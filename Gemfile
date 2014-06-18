@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
+#database development
+gem 'pg'
 # Heroku's web server
 gem 'thin'
 
-#database development
-gem 'pg'
 
 # Javascript
 gem 'json', '~> 1.6'
@@ -99,10 +99,7 @@ group :test do
   gem 'database_cleaner', '~> 0.8'
 end
 
-group :production do
-  # Database
-  gem 'pg'
-end
+gem 'pry'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
