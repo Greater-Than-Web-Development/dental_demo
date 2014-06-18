@@ -25,8 +25,8 @@ gem 'devise','~> 1.5'
 gem 'backstretch-rails'
 
 #Sprockets for assets
-gem 'sprockets', '2.2.2.backport2'
-gem 'sprockets-rails', '2.0.0.backport1'
+gem 'sprockets', '2.2.2'
+gem 'sprockets-rails'
 
 # Responders
 gem 'responders','~> 0.9'
@@ -103,8 +103,6 @@ group :production do
   # Database
   gem 'pg'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
