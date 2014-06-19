@@ -9,7 +9,8 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <img src="http://placehold.it/150x50&text=Logo" alt="">
+            <!-- <img src="http://placehold.it/150x50&text=Logo" alt=""> -->
+            <%= image_tag("Logo1.png", alt:"William Ryan DMD", id: "nav-logo") %>
           </a>
         </div>
 
@@ -26,7 +27,7 @@
               <%= link_to 'Frequently Asked Questions', page_path('faq') %>
             </li>
             <li>
-              <a href="#">Services</a>
+             <%= link_to 'Services', page_path('services') %>
             </li>
             <li>
               <a href="#">Schedule an Appointment</a>
