@@ -7,8 +7,8 @@ class CreateAppointments < ActiveRecord::Migration
       t.time :start_time
       t.time :end_time
       t.string :appointment_type
-      t.boolean :confirmation_sent?
-      t.boolean :confirmed?
+      t.boolean :confirmation_sent, null: false, default: false
+      t.boolean :confirmed, null: false, default: false
 
       t.timestamps
     end

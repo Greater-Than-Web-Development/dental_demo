@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(:version => 20140620084409) do
     t.integer  "patient_id"
     t.date     "date"
     t.time     "time"
-    t.boolean  "morning?"
+    t.boolean  "morning",                             :null => false
     t.string   "appointment_type"
-    t.boolean  "request_read?"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.boolean  "request_read",     :default => false, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "appointments", :force => true do |t|
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(:version => 20140620084409) do
     t.time     "start_time"
     t.time     "end_time"
     t.string   "appointment_type"
-    t.boolean  "confirmation_sent?"
-    t.boolean  "confirmed?"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.boolean  "confirmation_sent", :default => false, :null => false
+    t.boolean  "confirmed",         :default => false, :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "chairs", :force => true do |t|

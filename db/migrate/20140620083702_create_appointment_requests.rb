@@ -4,9 +4,9 @@ class CreateAppointmentRequests < ActiveRecord::Migration
       t.integer :patient_id
       t.date :date
       t.time :time
-      t.boolean :morning?
+      t.boolean :morning, null: false
       t.string :appointment_type
-      t.boolean :request_read?
+      t.boolean :request_read, null: false, default: false
 
       t.timestamps
     end
