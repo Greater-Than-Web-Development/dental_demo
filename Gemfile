@@ -2,11 +2,19 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
+ gem 'nokogiri'
+
 #database development
 gem 'pg'
+
 # Heroku's web server
 gem 'thin'
 
+gem 'faker'
+
+#accounts management
+gem 'activeadmin', github: 'gregbell/active_admin'
+  gem "meta_search",    '>= 1.1.0.pre'
 
 # Javascript
 gem 'json', '~> 1.6'
@@ -19,7 +27,10 @@ gem 'rdiscount', '~> 1.6'
 gem "font-awesome-rails"
 
 # Authentication
-gem 'devise','~> 1.5'
+gem 'devise'
+
+# deal with holidays
+gem 'holidays'
 
 # Background Slide for Welcome Page
 gem 'backstretch-rails'
