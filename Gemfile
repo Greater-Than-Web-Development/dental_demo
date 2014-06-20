@@ -10,6 +10,8 @@ gem 'pg'
 # Heroku's web server
 gem 'thin'
 
+gem 'faker'
+
 #accounts management
 gem 'activeadmin', github: 'gregbell/active_admin'
   gem "meta_search",    '>= 1.1.0.pre'
