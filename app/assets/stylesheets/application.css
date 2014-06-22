@@ -11,6 +11,8 @@
  *= require_self
  *= require font-awesome
  *= require home
- *= nav-and-footer
- *= require_tree .
+ *= require nav-and-footer
+ *= require patients
+ *= require appointments
+
  */
