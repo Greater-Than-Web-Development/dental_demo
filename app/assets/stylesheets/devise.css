@@ -1,0 +1,28 @@
+#sign-up-form{
+  float: none;
+  margin: auto;
+  width: 45%;
+  margin-bottom:50px;
+}
+
+#new_patient .input.password, #new_patient .input.email, #new_patient .input.patient_password_confirmation{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#new_patient .form-actions{
+margin-top: 10px;
+}
+
+#new_patient label.password, #new_patient label.email, input.button, a{
+  font-size: 18px;
+}
+
+#patient-directions {
+float: none;
+margin: 0 auto;
+font-size: 16px;
+margin-bottom: 50px;
+width: 55%;
+margin-top: 25px;
+}
