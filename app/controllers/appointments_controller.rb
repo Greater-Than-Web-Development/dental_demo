@@ -3,9 +3,12 @@ class AppointmentsController < ApplicationController
   def new
     if patient_signed_in?
       @patient = Patient.find_by_id(current_patient.id)
-      p "This is #{current_patient} and this is his/her id #{current_patient.id}"
+      patient_session[:id] = current_patient.id
+      patient_session[:email] = current_patient.email
+      patient_session[:first_name] = current_patient.first_name
+      render 'new'
     else
-      redirect_to "/"
+      redirect_to new_patient_session_path
     end
 
   end

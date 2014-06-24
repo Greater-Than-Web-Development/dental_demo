@@ -1,7 +1,7 @@
 <div class="appointment-body" id="new-appointment">
   <div class="returning-patient">
-    <h4>Returning Patients with An Online Account<%= link_to('Click Here', 'devise/sessions#new')%> to Log in</h4>
+    <h4>Returning Patients with An Online Account <%= link_to('Click Here', new_patient_session_path)%> to Log in</h4>
   </div>
 
-  <h4>If You Are New Patient, or Do Not Have an Online Account<%= link_to('Click Here', 'devise/registrations#new')%> to Register</h4>
+  <h4>If You Are New Patient, or Do Not Have an Online Account <%= link_to('Click Here', new_patient_registration_path)%> to Register</h4>
 </div>
