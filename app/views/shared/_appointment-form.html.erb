@@ -1,0 +1,15 @@
+ <div class="col-lg-4" id="appointment-form">
+
+
+      <%= simple_form_for "/appointments", {html: {class: "form-horizontal"}}  do |f| %>
+
+      <%= f.input :first_name, label: "First Name", placeholder: current_patient.first_name %>
+      <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name %>
+      <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email %>
+      <%= f.input :date, input_html: {"data-behaviour" => "datepicker"} %>
+
+      <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
+
+      <% end %>
+
+    </div>
