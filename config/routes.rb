@@ -1,10 +1,11 @@
 Dental::Application.routes.draw do
-  devise_for :patients
 
   root to: 'home#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  devise_for :patients
 
   resources :appointments
 

@@ -18,22 +18,35 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <%= link_to 'About Us', page_path('about') %>
+              <%= link_to 'About', page_path('about') %>
             </li>
             <li>
-              <%= link_to 'Contact Us', page_path('contact') %>
+              <%= link_to 'Contact', page_path('contact') %>
             </li>
-             <li>
-              <%= link_to 'Frequently Asked Questions', page_path('faq') %>
+            <li>
+              <%= link_to 'FAQ', page_path('faq') %>
             </li>
             <li>
              <%= link_to 'Services', page_path('services') %>
-            </li>
-            <li>
-              <a href="#">Schedule an Appointment</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-    </nav>
+           </li>
+           <li>
+             <%= link_to 'Appointments', new_appointment_path %>
+           </li>
+          </li>
+          <% if patient_signed_in? %>
+          <li>
+           <%= link_to 'Sign Out', destroy_patient_session_path, method: :delete  %>
+         </li>
+         <% else %>
+         <li>
+          <%= link_to 'Sign In', new_patient_session_path %>
+        </li>
+        <li>
+         <%= link_to 'Sign Up', new_patient_registration_path %>
+       </li>
+       <% end %>
+     </ul>
+   </div>
+   <!-- /.navbar-collapse -->
+ </div>
+</nav>
