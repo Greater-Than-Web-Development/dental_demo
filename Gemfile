@@ -29,7 +29,10 @@ gem "font-awesome-rails"
 # Authentication
 gem 'devise'
 
-# deal with holidays
+#DatepickerJS
+# gem 'bootstrap-datepicker-rails'
+
+# Deal with holidays
 gem 'holidays'
 
 # Background Slide for Welcome Page

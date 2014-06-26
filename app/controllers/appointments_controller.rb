@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
       patient_session[:id] = current_patient.id
       patient_session[:email] = current_patient.email
       patient_session[:first_name] = current_patient.first_name
-      render 'new'
+      render 'new', layout: "appointments"
     else
       redirect_to new_patient_session_path
     end
