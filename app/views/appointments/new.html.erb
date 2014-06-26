@@ -15,24 +15,13 @@
       <%= f.input :first_name, label: "First Name", placeholder: current_patient.first_name %>
       <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name %>
       <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email %>
-
-      <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 17, end_year: Date.today.year - 17, order: [:day, :month, :year], label:"Verify Patients Birthday" %>
-
-      <%= f.input :date, label: "First Name", {:html => {'data-behaviour' => 'datepicker'}} %>
-  <%= f.input %>
+      <%= f.input :date, input_html: {"data-behaviour" => "datepicker"} %>
 
       <%= f.submit("Request Appointment") %>
 
       <% end %>
 
-      <input type="text" data-behaviour='datepicker' >
-
-      <script type="text/javascript">
-      $(document).ready(function(){
-        $('[data-behaviour~=datepicker]').datepicker();
-      })
-      </script>
-
+      <!--       <input type="text" data-behaviour='datepicker' > -->
 
 
     </div>
