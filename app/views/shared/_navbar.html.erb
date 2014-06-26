@@ -30,7 +30,8 @@
              <%= link_to 'Services', page_path('services') %>
            </li>
            <li>
-            <a href="#">Appointments</a>
+             <%= link_to 'Appointments', new_appointment_path %>
+           </li>
           </li>
           <% if patient_signed_in? %>
           <li>

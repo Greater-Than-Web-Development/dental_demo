@@ -1,7 +1,30 @@
 <div class="appointment-body" id="new-appointment">
   <div class="returning-patient">
-    <h4>Returning Patients with An Online Account <%= link_to('Click Here', new_patient_session_path)%> to Log in</h4>
+
+    <h4>If You Are New Patient, or Do Not Have an Online Account <%= link_to('Click Here', new_patient_registration_path)%> to Register</h4>
+
   </div>
 
-  <h4>If You Are New Patient, or Do Not Have an Online Account <%= link_to('Click Here', new_patient_registration_path)%> to Register</h4>
+  <div class="row">
+
+    <div class="col-lg-12" id="appointment-form">
+
+      <%= form_tag('appointments#create', method: "post", class: "appointment-new") do %>
+      <%= label_tag :first_name, "First Name" %>
+      <%= text_field_tag(:first_name, value: @patient.first_name) %>
+      <%= label_tag :last_name, "Last Name" %>
+      <%= text_field_tag(:last_name, value: @patient.last_name) %>
+      <%= label_tag(:date_of_birth, "Verify Patients Date of Birth") %>
+      <%= label_tag(:email, "Email") %>
+      <%= text_field_tag(:email, value: @patient.email) %>
+     <%= date_field_tag(:date_of_birth, required: true) %>
+      <%= submit_tag("Request Appointment") %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+
 </div>
