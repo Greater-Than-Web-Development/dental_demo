@@ -3,6 +3,7 @@ class AppointmentsController < ApplicationController
   def new
     if patient_signed_in?
       @patient = Patient.find_by_id(current_patient.id)
+      @appointment_request = AppointmentRequest.new
       patient_session[:id] = current_patient.id
       patient_session[:email] = current_patient.email
       patient_session[:first_name] = current_patient.first_name
