@@ -1,5 +1,6 @@
  <div class="col-lg-4" id="appointment-form">
 
+  <h4>Patient Information</h4>
 
       <%= simple_form_for "/appointments", {html: {class: "form-horizontal"}}  do |f| %>
 
@@ -11,7 +12,12 @@
 
       <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:day, :month, :year], required: true, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382" %>
 
-      <%= f.input :date, input_html: {"data-behaviour" => "datepicker"} %>
+      <h4>Appointment Scheduling</h4>
+
+      <%= f.input :date, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
+
+
+      <%= f.input :time, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
 
       <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
 
