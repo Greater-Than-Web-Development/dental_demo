@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    if check_date_of_birth(params[:date_of_birth])
+    if current_patient.check_date_of_birth(params[:date_of_birth])
       render :success
     else
       render js: "alert('The Date of Birth you provided does not match our records for this patient. Please review your subission for errors and then resubmit or call our office at 1-860-379-4382');"

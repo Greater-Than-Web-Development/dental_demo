@@ -11,6 +11,8 @@ Dental::Application.routes.draw do
 
   get '/new-appointment' => "appointments#new"
 
+  post '/appointments/new' => "appointments#create"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
