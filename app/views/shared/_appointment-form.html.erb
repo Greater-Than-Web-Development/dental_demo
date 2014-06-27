@@ -1,31 +1,34 @@
  <div class="col-lg-4" id="appointment-form">
 
+
+  <div class="well appointment-well">
   <h4 class="appointment-label">Patient Information</h4>
 
-      <%= simple_form_for "/appointments", {html: {class: "form-horizontal"}}  do |f| %>
+    <%= simple_form_for "/appointments", {html: {class: "form-horizontal"}}  do |f| %>
 
-      <%= f.input :first_name, label: "First Name", placeholder: current_patient.first_name %>
+    <%= f.input :first_name, label: "First Name", placeholder: current_patient.first_name %>
 
-      <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name %>
+    <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name %>
 
-      <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email %>
+    <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email %>
 
-      <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:day, :month, :year], required: true, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382" %>
+    <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:day, :month, :year], required: true, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382" %>
 
-      <h4 class="appointment-label" id="appointment-scheduling">Appointment Scheduling</h4>
+    <h4 class="appointment-label" id="appointment-scheduling">Appointment Scheduling</h4>
 
-      <%= f.input :date, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
-
-
-      <%= f.input :time, input_html: {"data-format" => "hh:mm:ss"}, required: true, hint: "Please specify your preferred appointment time." %>
-
-      <%= f.collection_check_boxes :afternoon, [[true, 'Afternoon'], [false, 'Morning']], :first, :last, required: true, hint: "Please Select a Preferred Time of Day"  %>
-
-  <!--      f.collection_check_boxes :options, [[true, 'Yes'] ,[false, 'No']], :first, :last -->
+    <%= f.input :date, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
 
 
-      <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
+    <%= f.input :time, input_html: {"data-format" => "hh:mm:ss"}, required: true, hint: "Please specify your preferred appointment time." %>
 
-      <% end %>
+    <%= f.collection_check_boxes :afternoon, [[true, 'Afternoon'], [false, 'Morning']], :first, :last, required: true, hint: "Please Select a Preferred Time of Day"  %>
 
-    </div>
+    <!--      f.collection_check_boxes :options, [[true, 'Yes'] ,[false, 'No']], :first, :last -->
+
+
+    <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
+
+    <% end %>
+
+  </div>
+</div>
