@@ -3,17 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #appointment-form{
-  float: none;
-  margin: 0 auto;
+float: none;
+margin: 0 auto;
 }
 
 .returning-patient{
-  text-align: center;
-  margin-bottom: 20px;
+text-align: center;
+margin-bottom: 20px;
 }
 
 .form-horizontal{
-  font-size: 16px;
+font-size: 16px;
 }
 
 #appointment-form .form-horizontal .controls input{
@@ -22,11 +22,28 @@ margin-bottom: 5px
 }
 
 h3.errors{
-  color: red;
-  font-weight: bold;
+color: red;
+font-weight: bold;
 }
 
 .col-lg-6#errors{
-  float: none;
-  margin: 0 auto;
+float: none;
+margin: 0 auto;
+}
+
+#appointment-form .collection_check_boxes{
+margin-right: 10px;
+margin-left: 10px;
+margin-bottom: 20px;
+margin-top: 5px;
+}
+
+.appointment-label{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+.appointment-label#appointment-scheduling{
+  margin-top: 30px;
 }
