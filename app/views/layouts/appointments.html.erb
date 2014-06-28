@@ -16,7 +16,15 @@
   <!--   Dropdown Hover Menu -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
 
-<!--   TODO: Add Chosen Multiple for Time Drop Down -->
+  <!--   Chosen for Time Drop Down Multiple Selector -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css">
+
+  <!-- JS -->
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
+
+
 </head>
 <body>
   <%= render partial: "shared/navbar" %>
@@ -33,6 +41,8 @@
 
 
 </body>
+
+<!-- DatePicker -->
 <script type="text/javascript">
 $(document).ready(function(){
   $('[data-behaviour~=datepicker]').datepicker({
@@ -43,6 +53,15 @@ $(document).ready(function(){
   });
 
 })
+</script>
+
+<!-- Chosen JS -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $(".chosen-dropdown").chosen()
+});
+
 </script>
 
 </html>
