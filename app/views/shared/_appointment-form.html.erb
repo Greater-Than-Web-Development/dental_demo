@@ -20,6 +20,10 @@
 
     <%= f.input :time, collection: ["Morning", "Mid Day", "Afternoon"], required: true, hint: "Please specify your preferred appointment time.", prompt: "Select Preferred Time of Day" %>
 
+<!--   TODO: Add Chosen Multiple for Time Drop Down -->
+
+    <%= f.input :details, label: "Appointment Details", as: :text, input_html: {rows: "10", cols:"53"}, required: false %>
+
     <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
 
     <% end %>
