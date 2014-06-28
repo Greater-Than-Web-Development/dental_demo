@@ -1,5 +1,12 @@
 class AppointmentsController < ApplicationController
 
+
+  def main
+
+
+  end
+
+
   def new
     if patient_signed_in?
       # @patient = Patient.find_by_id(current_patient.id)

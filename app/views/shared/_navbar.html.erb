@@ -29,24 +29,38 @@
             <li>
              <%= link_to 'Services', page_path('services') %>
            </li>
-           <li>
-             <%= link_to 'Appointments', new_appointment_path %>
-           </li>
+
+           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+              Appointments <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a tabindex="-1" href="#">Information</a></li>
+              <li class="divider"></li>
+            <li>
+              <%= link_to 'Request an Appointment Online', new_appointment_path, tabindex: "-1" %>
+            </li>
+              <li class="divider"></li>
+              <li><a tabindex="-1" href="#">Appointment Scheduling</a></li>
+              <li class="divider"></li>
+            </ul>
           </li>
-          <% if patient_signed_in? %>
-          <li>
-           <%= link_to 'Sign Out', destroy_patient_session_path, method: :delete  %>
-         </li>
-         <% else %>
-         <li>
-          <%= link_to 'Sign In', new_patient_session_path %>
+
         </li>
+        <% if patient_signed_in? %>
         <li>
-         <%= link_to 'Sign Up', new_patient_registration_path %>
+         <%= link_to 'Sign Out', destroy_patient_session_path, method: :delete  %>
        </li>
-       <% end %>
-     </ul>
-   </div>
-   <!-- /.navbar-collapse -->
+       <% else %>
+       <li>
+        <%= link_to 'Sign In', new_patient_session_path %>
+      </li>
+      <li>
+       <%= link_to 'Sign Up', new_patient_registration_path %>
+     </li>
+     <% end %>
+   </ul>
  </div>
+ <!-- /.navbar-collapse -->
+</div>
 </nav>
