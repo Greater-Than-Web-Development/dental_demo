@@ -13,7 +13,7 @@ Dental::Application.routes.draw do
 
   post '/appointments/new' => "appointments#create"
 
-  get '/appointments/home' => "appointments#main"
+  get '/appointments/home' => "appointments#index"
 
 
   # The priority is based upon order of creation:
