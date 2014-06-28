@@ -1,9 +1,8 @@
 class AppointmentsController < ApplicationController
 
 
-  def main
-
-
+  def index
+    render 'index', layout: "appointments"
   end
 
 

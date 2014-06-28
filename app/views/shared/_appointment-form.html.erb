@@ -18,13 +18,7 @@
 
     <%= f.input :date, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
 
-
-    <%= f.input :time, input_html: {"data-format" => "hh:mm:ss"}, required: true, hint: "Please specify your preferred appointment time." %>
-
-    <%= f.collection_check_boxes :afternoon, [[true, 'Afternoon'], [false, 'Morning']], :first, :last, required: true, hint: "Please Select a Preferred Time of Day"  %>
-
-    <!--      f.collection_check_boxes :options, [[true, 'Yes'] ,[false, 'No']], :first, :last -->
-
+    <%= f.input :time, collection: ["Morning", "Mid Day", "Afternoon"], required: true, hint: "Please specify your preferred appointment time.", prompt: "Select Preferred Time of Day" %>
 
     <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
 
