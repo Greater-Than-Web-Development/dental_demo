@@ -3,4 +3,16 @@ class Appointment < ActiveRecord::Base
 
   belongs_to :patient
   belongs_to :chair
+
+
+  def available_times_for(weekday)
+
+  hours_in_day = [9:00, ]
+
+  self.find(:all, :conditions => { :date => weekday }
+
+  self.strftime("%H:%M:%S")
+
+  end
+
 end
