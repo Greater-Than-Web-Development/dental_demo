@@ -20,6 +20,12 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'json', '~> 1.6'
 gem 'jquery-rails', '~> 1.0'
 
+#Time difference
+gem 'time_difference'
+
+#Active Record Query formatting
+gem 'squeel'
+
 # Markdown
 gem 'rdiscount', '~> 1.6'
 

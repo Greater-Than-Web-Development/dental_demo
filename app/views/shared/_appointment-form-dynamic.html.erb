@@ -18,9 +18,13 @@
 
     <%= f.input :date, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
 
-    <%= f.input :time, collection: Appointment.all.map{|app| app.time}, required: true, hint: "Please specify your preferred appointment time.", prompt: "Select Preferred Time of Day", input_html: {class: "chosen-dropdown"}, as: :multiple %>
+    <!--   TODO: Add Chosen Multiple for Time Drop Down -->
 
-<!--   TODO: Add Chosen Multiple for Time Drop Down -->
+    <%= select_tag 'time',
+       options_from_collection_for_select(Appointment.all, :start_time.to_s, :start_time),
+       multiple: true, class: "chosen-dropdown multiselect" %>
+
+<!--   end -->
 
     <%= f.input :details, label: "Appointment Details", as: :text, input_html: {rows: "10", cols:"53"}, required: false %>
 
