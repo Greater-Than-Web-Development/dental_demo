@@ -10,6 +10,7 @@ gem 'pg'
 # Heroku's web server
 gem 'thin'
 
+# Seeding
 gem 'faker'
 
 #accounts management
@@ -22,6 +23,10 @@ gem 'jquery-rails', '~> 1.0'
 
 #Time difference
 gem 'time_difference'
+
+
+#Active Record Time Vaidatios
+gem 'validates_timeliness', '~> 3.0'
 
 #Active Record Query formatting
 gem 'squeel'

@@ -1,8 +1,14 @@
 class Appointment < ActiveRecord::Base
   attr_accessible :appointment_type, :chair_id, :confirmation_sent, :confirmed, :date, :end_time, :patient_id, :start_time
 
+  # Associations
   belongs_to :patient
   belongs_to :chair
+
+  # Validations
+  validates_time :start_time, :between => '9:00am'...'5:00pm' # On or after 9:00AM and strictly before 5:00PM
+
+
 
   def self.started_before(time)
     where("start_time < ?", time)
@@ -58,11 +64,11 @@ end
   # end
 
   def start_time_conflict?(start_time_string, end_time_string)
-    self.start_time.between?(Time.zone.parse(start_time_string), Time.zone.parse(end_time_string)
+    self.start_time.between?(Time.zone.parse(start_time_string), Time.zone.parse(end_time_string))
   end
 
   def end_time_conflict?(start_time_string, end_time_string)
-    self.end_time.between?(Time.zone.parse(end_time_string), Time.zone.parse(end_time_string)
+    self.end_time.between?(Time.zone.parse(end_time_string), Time.zone.parse(end_time_string))
   end
 
 

@@ -257,6 +257,7 @@ GEM
     tilt (1.4.1)
     time_difference (0.3.2)
       activesupport
+    timeliness (0.3.7)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -267,6 +268,8 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validates_timeliness (3.0.14)
+      timeliness (~> 0.3.6)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -319,3 +322,4 @@ DEPENDENCIES
   time_difference
   turn (~> 0.8)
   uglifier (>= 1.0.3)
+  validates_timeliness (~> 3.0)
