@@ -12,6 +12,9 @@ class Patient < ActiveRecord::Base
   has_many :appointment_requests
 
   #Validations
+  validates_date :date_of_birth, :before => lambda { 18.years.ago },
+                               :before_message => "must be at least 18 years old"
+
   validates :email, uniqueness: true
   validates :email, format: {with: /\S{3,}@\S{3,}\.\S{2,}/}
 
