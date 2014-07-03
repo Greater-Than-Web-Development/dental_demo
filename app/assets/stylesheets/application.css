@@ -17,3 +17,9 @@
  *= require devise
 
  */
+
+@import url(http://fonts.googleapis.com/css?family=Cinzel);
+
+h1.business-name, h2.business-name, h3.business-name, h4.business-name, h5.business-name{
+  font-family: Cinzel;
+}
