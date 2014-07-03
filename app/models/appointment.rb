@@ -7,7 +7,7 @@ class Appointment < ActiveRecord::Base
 
   # Validations
   validates_time :start_time, :between => '9:00am'...'5:00pm' # On or after 9:00AM and strictly before 5:00PM
-  validates_time :end_time :after => :start_time
+  validates_time :end_time, :after => :start_time
   validates_date :date, :on => :create, :on_or_after => :today
 
 
