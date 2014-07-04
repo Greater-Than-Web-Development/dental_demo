@@ -16,17 +16,22 @@
 
     <h4 class="appointment-label" id="appointment-scheduling">Appointment Scheduling</h4>
 
-    <%= f.input :date, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
+    <%= f.input :date, input_html: {"data-behaviour" => "datepicker", class: "input-md"}, required: true, hint: "Please specify your preferred appointment date." %>
 
-    <!--   TODO: Add Chosen Multiple for Time Drop Down -->
+    <%= label_tag 'time', 'Appointment Time', class: 'control-label' %>
 
-    <%= select_tag 'time',
+    <%= select_tag :first_time,
+       options_from_collection_for_select(Appointment.all, :start_time, :start_time),
+       multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your First Choice" %>
+
+ <%= label_tag 'time', 'Appointment Time', class: 'control-label' %>
+
+    <%= select_tag :second_time,
        options_from_collection_for_select(Appointment.all, :start_time.to_s, :start_time),
-       multiple: true, class: "chosen-dropdown multiselect" %>
+       multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your Second Choice" %>
 
-<!--   end -->
 
-    <%= f.input :details, label: "Appointment Details", as: :text, input_html: {rows: "10", cols:"53"}, required: false %>
+    <%= f.input :details, label: "Appointment Details", as: :text, input_html: {rows: "10", cols:"42"}, required: false %>
 
     <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
 

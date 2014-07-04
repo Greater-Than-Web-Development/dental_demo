@@ -10,7 +10,13 @@ class Appointment < ActiveRecord::Base
   validates_time :end_time, :after => :start_time
   validates_date :date, :on => :create, :on_or_after => :today
 
+  # def formatted_date
+  #   self.start_time.strftime("%A at %l:%M%P")
+  # end
 
+  # def self.return_formatted_dates(id=:all)
+  #   .find(id).map{||}
+  # end
 
   def self.started_before(time)
     where("start_time < ?", time)
