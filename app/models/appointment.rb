@@ -30,6 +30,10 @@ class Appointment < ActiveRecord::Base
     TimeDifference.between(self.start_time, self.end_time).in_hours
   end
 
+  def available_times_for_(date)
+
+  end
+
   def self.list_all_on(input_date)
   # mm/dd/yy or dd-mm-yy or yyyy-mm-dd or yyyy/mm/dd
   if input_date.class() == String
@@ -59,21 +63,19 @@ end
     end
   end
 
-  def self.find_apps(requested_time, date)
 
-   list_all_on(date).order(ABS(start_time - requested_time)).first
+#find appointments scheduled closest to this time
+ #  def self.find_closted_appointment(requested_time, date)
 
- end
+ #   list_all_on(date).order(ABS(:start_time - requested_time)).first
+
+ # end
 
  # Check if a given appointment overlaps this appointment
 
- def overlaps?(other)
-  (self.start_time - other.end_time) * (other.start_time - self.end_time) >= 0
+ def overlaps?(other_appointment)
+  (self.start_time - other_appointment.end_time) * (other_appointment.start_time - self.end_time) >= 0
 end
-
-  # def self.open_times(params_date)
-  #   find_by(date: params_date)
-  # end
 
   def start_time_conflict?(start_time_string, end_time_string)
     self.start_time.between?(Time.zone.parse(start_time_string), Time.zone.parse(end_time_string))

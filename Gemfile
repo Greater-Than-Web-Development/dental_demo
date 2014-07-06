@@ -28,6 +28,8 @@ gem 'time_difference'
 #Active Record Time Vaidatios
 gem 'validates_timeliness', '~> 3.0'
 
+#Active Record Date Validator
+
 #Active Record Query formatting
 gem 'squeel'
 
