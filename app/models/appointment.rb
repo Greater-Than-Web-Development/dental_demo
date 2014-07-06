@@ -10,31 +10,35 @@ class Appointment < ActiveRecord::Base
   validates_time :end_time, :after => :start_time
   validates_date :date, :on => :create, :on_or_after => :today
 
-  # def formatted_date
-  #   self.start_time.strftime("%A at %l:%M%P")
-  # end
+  def return_pretty_day_and_time
+    self.start_time.strftime("%A at %l:%M%P")
+  end
 
-  # def self.return_formatted_dates(id=:all)
-  #   .find(id).map{||}
-  # end
+  def self.return_pretty_day_and_times(id=:all)
+    find(id).map{|a| a.start_time.strftime("%A at %l:%M%P")}
+  end
 
   def self.started_before(time)
     where("start_time < ?", time)
   end
 
-  def format_time
-    self.strftime "%H:%M "
+  def return_24_time
+    self.start_time.strftime "%H:%M "
   end
 
-  def appointment_length
+  def appointment_length_in_hours
     TimeDifference.between(self.start_time, self.end_time).in_hours
   end
 
-  def self.list_all_on(date)
-   find_by(date: date)
- end
+  def self.list_all_on(input_date)
+  # mm/dd/yy or dd-mm-yy or yyyy-mm-dd or yyyy/mm/dd
+  if input_date.class() == String
+    input_date = Date.parse(input_date)
+  end
+  where(date: input_date)
+end
 
- def check_and_set_end_time
+def check_and_set_end_time
   if self.end_time == nil && self.type != nil
     self.set_end_time_by(self.type)
   else
