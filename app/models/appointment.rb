@@ -22,16 +22,29 @@ class Appointment < ActiveRecord::Base
     where("start_time < ?", time)
   end
 
-  def return_24_time
-    self.start_time.strftime "%H:%M "
+  def return_12_time
+    self.start_time.strftime "%l:%M "
   end
 
   def appointment_length_in_hours
     TimeDifference.between(self.start_time, self.end_time).in_hours
   end
 
-  def available_times_for_(date)
+  def all_available_times(time_start="9:00am")
+    time = Time.parse(time_start)
+    available_times = Array.new
+    hours = 0
+    16.times do
+      hours + 0.5
+      available_times << time + hours
+    end
+    return available_times
+  end
 
+  def self.available_times_for(given_date=Date.today)
+    appointment_slots = all_available_times()
+    appointments = where(date: given_date).pluck(:start_time, :end_time)
+    ava
   end
 
   def self.list_all_on(input_date)
@@ -64,7 +77,8 @@ end
   end
 
 
-#find appointments scheduled closest to this time
+# find appointments scheduled closest to this time
+
  #  def self.find_closted_appointment(requested_time, date)
 
  #   list_all_on(date).order(ABS(:start_time - requested_time)).first
@@ -77,26 +91,18 @@ end
   (self.start_time - other_appointment.end_time) * (other_appointment.start_time - self.end_time) >= 0
 end
 
-  def start_time_conflict?(start_time_string, end_time_string)
-    self.start_time.between?(Time.zone.parse(start_time_string), Time.zone.parse(end_time_string))
-  end
+def start_time_conflict?(start_time_string, end_time_string)
+  self.start_time.between?(Time.zone.parse(start_time_string), Time.zone.parse(end_time_string))
+end
 
-  def end_time_conflict?(start_time_string, end_time_string)
-    self.end_time.between?(Time.zone.parse(end_time_string), Time.zone.parse(end_time_string))
-  end
+def end_time_conflict?(start_time_string, end_time_string)
+  self.end_time.between?(Time.zone.parse(end_time_string), Time.zone.parse(end_time_string))
+end
 
 
 
 # # Return a scope for all appointment overlapping the given appointment, including the given appointment itself
 # named_scope :overlapping, lambda { |appointment| {:conditions => ["(DATEDIFF(start_time, ?) * DATEDIFF(?, end_time)) >= 0", appointment.end_time, appointment.start_time]}}
 
-
-  # def available_times_for(weekday)
-
-  # hours_in_day = [9:00, ]
-
-  # self.strftime("%H:%M:%S")
-
-  # end
 
 end
