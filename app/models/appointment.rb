@@ -70,18 +70,20 @@ class Appointment < ActiveRecord::Base
 
   def self.available_times_for(given_date=Date.today)
     # if any available time is between scheduled start time and end time, remove from available array
-   available_times = all_available_times()
-   scheduled_times = where(date: given_date).select([:start_time, :end_time]).map {|a| {start_time: a.start_time, end_time: a.end_time}}
-   open_slots = Array.new
-   available_times.each do |time_slot|
+    available_times = all_available_times()
+    scheduled_times = where(date: given_date).select([:start_time, :end_time]).map {|a| {start_time: a.start_time, end_time: a.end_time}}
+    open_slots = Array.new
+    available_times.each do |time_slot|
 
     # TODO: 7-6-2014
     # Create TimeManager class?
     if time_slot.between?()
     end
   end
+end
 
-  def self.list_all_on(input_date)
+
+def self.list_all_on(input_date)
   # mm/dd/yy or dd-mm-yy or yyyy-mm-dd or yyyy/mm/dd
   if input_date.class() == String
     input_date = Date.parse(input_date)
@@ -108,6 +110,12 @@ end
     else
       return false
     end
+  end
+
+  #Move to module
+
+   def next_appointments
+    Appointment.find(:all, :limit => 1, :conditions => ["id > ? and patient_id = ?", self.id, self.patient_id])
   end
 
 
