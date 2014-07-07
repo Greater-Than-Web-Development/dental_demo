@@ -74,6 +74,9 @@ class Appointment < ActiveRecord::Base
    scheduled_times = where(date: given_date).select([:start_time, :end_time]).map {|a| {start_time: a.start_time, end_time: a.end_time}}
    open_slots = Array.new
    available_times.each do |time_slot|
+
+    # TODO: 7-6-2014
+    # Create TimeManager class?
     if time_slot.between?()
     end
   end
