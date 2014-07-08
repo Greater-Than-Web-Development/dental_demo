@@ -30,9 +30,9 @@ class Appointment < ActiveRecord::Base
     TimeDifference.between(self.start_time, self.end_time).in_hours
   end
 
-  def all_available_times(time_input="9:00am")
-    time_min = Time.parse(time_input)
-    max_time = Time.parse("5:00pm")
+  def self.all_available_times(time_input="9:00am", date_input=nil)
+    time_min = Time.parse("#{date_input} #{time_input}")
+    max_time = Time.parse("#{date_input} 5:00pm")
     available_times = Array.new
     hours = 0.5
 
@@ -68,36 +68,49 @@ class Appointment < ActiveRecord::Base
   #   end
   # end
 
+  def self.scheduled_times_for(params_date=Date.today)
+    where(date: params_date).select([:start_time, :end_time]).map{|a| {start_time: a.start_time, end_time: a.end_time}}
+  end
+
   def self.available_times_for(given_date=Date.today)
     # if any available time is between scheduled start time and end time, remove from available array
     available_times = all_available_times()
-    scheduled_times = where(date: given_date).select([:start_time, :end_time]).map {|a| {start_time: a.start_time, end_time: a.end_time}}
-    open_slots = Array.new
-    available_times.each do |time_slot|
+    #an array of hash objects
+    scheduled_times = scheduled_times_for(given_date)
+    binding.pry
+    closed_slots = Array.new
 
-    # TODO: 7-6-2014
-    # Create TimeManager class?
-    if time_slot.between?()
+    available_times.each do |at|
+      scheduled_times.each do |st|
+        if at.between?(st[:start_time], st[:end_time])
+          closed_slots << at
+          binding.pry
+        end
+      end
+      binding.pry
+    end
+    return closed_slots
+      # scheduled_times.each do |sched_hash|
+      #   available_times.select{|at| !(at.between?(sched_hash.start_time, sched_hash.end_time))}
+      # end
+  end
+
+
+    def self.list_all_on(input_date)
+    # mm/dd/yy or dd-mm-yy or yyyy-mm-dd or yyyy/mm/dd
+    if input_date.class() == String
+      input_date = Date.parse(input_date)
+    end
+    where(date: input_date)
+  end
+
+  def check_and_set_end_time
+    if self.end_time == nil && self.type != nil
+      self.set_end_time_by(self.type)
+    else
+      false
     end
   end
-end
-
-
-def self.list_all_on(input_date)
-  # mm/dd/yy or dd-mm-yy or yyyy-mm-dd or yyyy/mm/dd
-  if input_date.class() == String
-    input_date = Date.parse(input_date)
-  end
-  where(date: input_date)
-end
-
-def check_and_set_end_time
-  if self.end_time == nil && self.type != nil
-    self.set_end_time_by(self.type)
-  else
-    false
-  end
-end
 
   #Todo, define appointment types
 
@@ -114,7 +127,7 @@ end
 
   #Move to module
 
-   def next_appointments
+  def next_appointments
     Appointment.find(:all, :limit => 1, :conditions => ["id > ? and patient_id = ?", self.id, self.patient_id])
   end
 
