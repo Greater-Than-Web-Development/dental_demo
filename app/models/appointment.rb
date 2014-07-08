@@ -74,20 +74,17 @@ class Appointment < ActiveRecord::Base
 
   def self.available_times_for(given_date=Date.today)
     # if any available time is between scheduled start time and end time, remove from available array
-    available_times = all_available_times()
+    available_times = all_available_times("9:00am",given_date)
     #an array of hash objects
     scheduled_times = scheduled_times_for(given_date)
-    binding.pry
     closed_slots = Array.new
 
     available_times.each do |at|
       scheduled_times.each do |st|
-        if at.between?(st[:start_time], st[:end_time])
+        if at.hour.between?(st[:start_time].hour, st[:end_time].hour)
           closed_slots << at
-          binding.pry
         end
       end
-      binding.pry
     end
     return closed_slots
       # scheduled_times.each do |sched_hash|
