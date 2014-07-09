@@ -86,7 +86,7 @@ class Appointment < ActiveRecord::Base
         end
       end
     end
-    return closed_slots
+    open_slots = available_times - closed_slots
       # scheduled_times.each do |sched_hash|
       #   available_times.select{|at| !(at.between?(sched_hash.start_time, sched_hash.end_time))}
       # end
