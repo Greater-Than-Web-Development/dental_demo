@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  root to: "home#index"
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  devise_for :patients
+
+  resources :appointments
+
+  get '/new-appointment' => "appointments#new"
+
+  post '/appointments/new' => "appointments#create"
+
+  get '/appointments/home' => "appointments#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

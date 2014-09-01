@@ -12,4 +12,19 @@
  *
  *= require_tree .
  *= require_self
+ *= require appointments
+ *= require home
  */
+
+@import url(http://fonts.googleapis.com/css?family=Cinzel);
+
+h1.business-name, h2.business-name, h3.business-name, h4.business-name, h5.business-name{
+  font-family: Cinzel;
+}
+
+body{
+  background-image: url(/assets/cream_dust/cream_dust.png);
+ /* background-image: url(/assets/diamond_eyes/diamond_eyes.png);*/
+  background-image: url(/assets/grey/grey.png);
+
+}
