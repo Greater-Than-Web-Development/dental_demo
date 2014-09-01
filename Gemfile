@@ -2,9 +2,19 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '1.9.3'
+ruby '2.0.0'
 gem 'rails', '4.1.5'
 # Use sqlite3 as the database for Active Record
+
+gem 'nokogiri'
+
+#seeds file fake values
+gem 'faker'
+
+#accounts management
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem "meta_search"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,14 +39,23 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#Active Record Query formatting
+gem 'squeel'
+
+#Prints out objects with indentation
+gem 'awesome_print'
+
+#helps manage dynos on heroku
+gem 'hirefireapp'
+
+
+
 
 
 gem 'bootstrap-sass'
@@ -49,12 +68,46 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
 
+#Time difference
+gem 'time_difference'
+
+#Active Record Time Vaidatios
+gem 'validates_timeliness', '~> 3.0'
+
+
+gem 'rails_12factor', group: :production
+
+# Hidden fields/Anti-spam form submissions
+gem 'honeypot-captcha'
+
+gem "font-awesome-rails"
+
+# Deal with holidays
+gem 'holidays'
+
+# Background Slide for Welcome Page
+gem 'backstretch-rails'
+
+# Responders
+gem 'responders'
+
+# Caching
+gem 'dalli', '~> 1.1'
+
+# Monitoring
+gem 'newrelic_rpm', '~> 3.4'
+
+
+
+
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19]
   gem 'quiet_assets'
   gem 'rails_apps_pages'
   gem 'rails_apps_testing'
+  gem "letter_opener" #email testing
   gem 'rails_layout'
 end
 
@@ -69,6 +122,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'turn', '~> 0.8', :require => false
   gem 'launchy'
   gem 'selenium-webdriver'
 end
