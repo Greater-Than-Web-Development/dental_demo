@@ -11,6 +11,9 @@ gem 'nokogiri'
 #seeds file fake values
 gem 'faker'
 
+# store database contents in seeds file
+gem 'seed_dump'
+
 #accounts management
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem "meta_search"
