@@ -5,11 +5,29 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/yeti/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<%= yield %>
- <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+ <%= render partial: "shared/navbar" %>
+
+ <% if flash[:error] %>
+ <div class="col-lg-6" id="errors">
+  <h3 class="errors", style="color:red; font-weight: bold;">
+    <%= flash[:error] %>
+  </h3>
+  <% end %>
+  <%= yield %>
+
+  <%= render partial: "shared/alternate_footer" %>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 </body>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
+
 </html>
