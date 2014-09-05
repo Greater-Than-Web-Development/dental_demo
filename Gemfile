@@ -11,9 +11,16 @@ gem 'nokogiri'
 #seeds file fake values
 gem 'faker'
 
+# store database contents in seeds file
+gem 'seed_dump'
+
 #accounts management
 gem 'activeadmin', github: 'gregbell/active_admin'
-gem "meta_search"
+
+# gem "meta_search" #conflicts with Devise
+
+#email validations
+gem 'email_validator'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -72,7 +79,7 @@ gem 'unicorn-rails'
 gem 'time_difference'
 
 #Active Record Time Vaidatios
-gem 'validates_timeliness', '~> 3.0'
+# gem 'validates_timeliness'
 
 
 gem 'rails_12factor', group: :production
