@@ -16,7 +16,8 @@ gem 'seed_dump'
 
 #accounts management
 gem 'activeadmin', github: 'gregbell/active_admin'
-# gem "meta_search"
+
+# gem "meta_search" #conflicts with Devise
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

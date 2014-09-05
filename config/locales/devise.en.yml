@@ -1,6 +1,13 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 en:
+  activerecord:
+    errors:
+      models:
+        patient:
+          attributes:
+            birthday:
+              invalid_date: 'The birthday you provided is invalid. Remember, patients must be 18 years of age or older to schedule an appointment online.'
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
