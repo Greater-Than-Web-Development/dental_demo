@@ -1,7 +1,7 @@
 class TimeSlot < ActiveRecord::Base
 
   validates_with :availability, unless: "appointments.nil?"
-  validates_with :workday
+  # validates_with :workday
 
   has_many :appointments
   belongs_to :office
