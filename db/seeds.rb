@@ -20,6 +20,12 @@ AdminUser.create! do |a|
 end
 
 Patient.create! do |p|
-  p.email = ENV[ADMIN_EMAIL]
-  p.password = ENV[ADMIN_PASSWORD] = 'password'
+  p.email = ENV[PATIENT_EMAIL]
+  p.password = ENV[PATIENT_PASSWORD] = 'password'
+end
+
+10.times do
+
+  Patient.create(first_name: Faker::Name.first_name, last_name:Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Internet.password, birthday: Time.at(rand * Time.now.to_i - 18.years), )
+
 end
