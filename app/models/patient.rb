@@ -1,16 +1,17 @@
 class Patient < ActiveRecord::Base
-  # Include default devise modules. Others available are:
+
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
+  # Associations
   has_many :appointments
 
-  #validations
+  # Validations
   validate :old_enough
   validates :email, uniqueness: true
-  validates :email, format: {with: /\S{3,}@\S{3,}\.\S{2,}/}
-
+  validates :email, :email => {:strict_mode => true}
+  # validates :email, format: {with: /\S{3,}@\S{3,}\.\S{2,}/}
 
   def old_enough
     minimum_age = Date.today - 18.years

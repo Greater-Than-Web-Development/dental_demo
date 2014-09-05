@@ -19,6 +19,9 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 # gem "meta_search" #conflicts with Devise
 
+#email validations
+gem 'email_validator'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

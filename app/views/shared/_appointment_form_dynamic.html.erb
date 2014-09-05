@@ -6,25 +6,27 @@
 
     <%= simple_form_for "/appointments", {html: {class: "form-horizontal"}}  do |f| %>
 
-    <%= f.input :first_name, label: "First Name", placeholder: current_patient.first_name %>
+      <%= label_tag 'time', 'First Name', class: 'control-label' %>
 
-    <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name %>
+    <%= f.input :first_name, label: "", placeholder: current_patient.first_name, class: "form-control" %>
 
-    <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email %>
+    <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name, class: "form-control" %>
 
-     <%= f.input :phone, label: "Contact Phone Number", required: true, placeholder: current_patient.phone %>
+    <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email, class: "form-control" %>
 
-    <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:day, :month, :year], required: true, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382" %>
+    <%= f.input :phone, label: "Contact Phone Number", required: true, placeholder: current_patient.phone, class: "form-control" %>
+
+    <%= f.input :date_of_birth, input_html: {"data-behaviour" => "datepicker"}, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:day, :month, :year], required: true, placeholder: current_patient.birthday, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382", class: "form-control" %>
 
     <h4 class="appointment-label" id="appointment-scheduling">Appointment Scheduling</h4>
 
-    <%= f.input :date, input_html: {"data-behaviour" => "datepicker", class: "input-md"}, required: true, hint: "Please specify your preferred appointment date." %>
+    <%= f.input :date, input_html: {"data-behaviour" => "datepicker", class: "input-md"}, required: true, label: "Preferred Date of Appointment." %>
 
     <%= label_tag 'time', 'Appointment Time', class: 'control-label' %>
 
     <%= select_tag :first_time,
     options_from_collection_for_select(Appointment.all, :start_time, :start_time),
-    multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your First Choice" %>
+    multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your First Choice"%>
 
     <%= label_tag 'time', 'Appointment Time (Your Second Choice)', class: 'control-label' %>
 
@@ -39,7 +41,7 @@
 
     <% end %>
 
-  </div>
+</div>
 </div>
 
 <!-- Chosen JS -->
@@ -49,7 +51,7 @@ $(document).ready(function(){
   $(".chosen-dropdown").chosen({
     max_selected_options: 5,
     no_results_text: "Oops, nothing found!"
-  })
+})
 });
 
 </script>
