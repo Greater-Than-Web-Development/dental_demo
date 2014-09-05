@@ -4,9 +4,9 @@
   <div class="well appointment-well">
     <h4 class="appointment-label">Patient Information</h4>
 
-    <%= simple_form_for "/appointments", {html: {class: "form-horizontal"}}  do |f| %>
+    <%= simple_form_for :appointment, {html: {class: "form-horizontal"}}  do |f| %>
 
-      <%= label_tag 'time', 'First Name', class: 'control-label' %>
+    <%= label_tag 'time', 'First Name', class: 'control-label' %>
 
     <%= f.input :first_name, label: "", placeholder: current_patient.first_name, class: "form-control" %>
 
@@ -16,7 +16,7 @@
 
     <%= f.input :phone, label: "Contact Phone Number", required: true, placeholder: current_patient.phone, class: "form-control" %>
 
-    <%= f.input :date_of_birth, input_html: {"data-behaviour" => "datepicker"}, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:day, :month, :year], required: true, placeholder: current_patient.birthday, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382", class: "form-control" %>
+    <%= f.input :birthday, input_html: {"data-behaviour" => "datepicker"}, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:month, :day, :year], required: true, placeholder: current_patient.birthday, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382", class: "form-control" %>
 
     <h4 class="appointment-label" id="appointment-scheduling">Appointment Scheduling</h4>
 
