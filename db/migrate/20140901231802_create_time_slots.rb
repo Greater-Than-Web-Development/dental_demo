@@ -4,7 +4,7 @@ class CreateTimeSlots < ActiveRecord::Migration
       t.time :start_time
       t.time :end_time
       t.date :date
-      t.boolean :availability
+      t.boolean :booked, default: false
 
       t.timestamps
     end
