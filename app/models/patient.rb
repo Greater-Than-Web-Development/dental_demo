@@ -3,16 +3,10 @@ class Patient < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable
 
   has_many :appointments
 
   #validations
-  # validates_date :birthday, :before => lambda { 18.years.ago },
-  # :before_message => "Must be at least 18 years old"
   validates :email, uniqueness: true
   validates :email, format: {with: /\S{3,}@\S{3,}\.\S{2,}/}
 

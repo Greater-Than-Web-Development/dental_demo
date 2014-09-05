@@ -76,7 +76,7 @@ gem 'unicorn-rails'
 gem 'time_difference'
 
 #Active Record Time Vaidatios
-gem 'validates_timeliness', '~> 3.0'
+# gem 'validates_timeliness'
 
 
 gem 'rails_12factor', group: :production

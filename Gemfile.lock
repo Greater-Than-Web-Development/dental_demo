@@ -345,4 +345,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   unicorn-rails
-  validates_timeliness (~> 3.0)
+  validates_timeliness
