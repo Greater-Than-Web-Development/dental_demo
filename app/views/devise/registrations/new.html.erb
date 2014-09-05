@@ -13,7 +13,7 @@
       <%= f.input :first_name, required: true, autofocus: true %>
       <%= f.input :last_name, required: true, autofocus: true %>
 
-       <%= f.input :birthday, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your preferred appointment date." %>
+       <%= f.input :birthday, as: :string, input_html: {"data-behaviour" => "datepicker"}, required: true, hint: "Please specify your birthday." %>
       <%= f.input :email, required: true, autofocus: true %>
       <%= f.input :password, required: true %>
       <%= f.input :password_confirmation, required: true %>
