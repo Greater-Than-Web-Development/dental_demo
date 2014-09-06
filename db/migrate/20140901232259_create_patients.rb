@@ -9,6 +9,8 @@ class CreatePatients < ActiveRecord::Migration
       t.boolean :new
       t.string :phone
       t.text :address
+      t.string :city
+      t.string :zip
       t.integer :pwid
 
       t.timestamps

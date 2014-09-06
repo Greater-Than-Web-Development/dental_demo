@@ -22,6 +22,10 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 #email validations
 gem 'email_validator'
 
+#seeds with Sprig
+
+gem 'sprig', group: :development
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -128,6 +132,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'turn', '~> 0.8', :require => false
   gem 'launchy'

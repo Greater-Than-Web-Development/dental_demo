@@ -5,8 +5,6 @@ class TimeSlot < ActiveRecord::Base
 
   has_many :appointments
   has_many :chairs, through: :appointments
-  belongs_to :office
-
 
   def availability
     if self.chairs.count == 0
