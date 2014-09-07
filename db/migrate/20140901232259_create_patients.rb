@@ -6,9 +6,11 @@ class CreatePatients < ActiveRecord::Migration
       # t.string :email #included in devise migration
       # t.string :password #included in devise migration
       t.string :birthday
-      t.boolean :new
+      t.boolean :new_patient
       t.string :phone
       t.text :address
+      t.string :city
+      t.string :zip
       t.integer :pwid
 
       t.timestamps

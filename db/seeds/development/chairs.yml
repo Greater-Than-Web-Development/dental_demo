@@ -1,0 +1,4 @@
+office_id,room
+<%= sprig_record(Office, 1).id %>,1
+<%= sprig_record(Office, 1).id %>,2
+

@@ -1,12 +1,10 @@
 class TimeSlot < ActiveRecord::Base
 
-  validates_with :availability, unless: "appointments.nil?"
+  validate :availability, unless: "appointments.nil?"
   # validates_with :workday
 
   has_many :appointments
   has_many :chairs, through: :appointments
-  belongs_to :office
-
 
   def availability
     if self.chairs.count == 0

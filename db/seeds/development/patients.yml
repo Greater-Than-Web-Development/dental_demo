@@ -1,0 +1,45 @@
+records:
+  - sprig_id: 1
+    first_name: 'Laura'
+    last_name: 'Ryan'
+    email: 'lryan09@gmail.com'
+    birthday: '02/26/1987'
+    phone: '5555555555'
+    password: 'password1'
+    new: true
+    address: "2 Mice Run"
+    city: "New Hartford"
+    zip: "06057"
+  - sprig_id: 2
+    first_name: 'Colin'
+    last_name: 'Cowherd'
+    email: 'cc@gmail.com'
+    birthday: '04/26/1968'
+    password: 'password1'
+    phone: '5555555555'
+    new: true
+    address: "2 Dog Lane"
+    city: "Winsted"
+    zip: "06098"
+  - sprig_id: 3
+    first_name: "<%= Faker::Name.first_name %>"
+    last_name: "<%= Faker::Name.last_name %>"
+    email: "<%= Faker::Internet.email %>"
+    password: 'password1'
+    birthday: "<%= Time.at(rand * Time.now.to_i - 18.years) %>"
+    phone: '1111111111'
+    new: true
+    address: "3 Dog Night"
+    city: "Winsted"
+    zip: "06098"
+  - sprig_id: 4
+    first_name: "<%= Faker::Name.first_name %>"
+    last_name: "<%= Faker::Name.last_name %>"
+    email: "<%= Faker::Internet.email %>"
+    password: 'password1'
+    birthday: "<%= Time.at(rand * Time.now.to_i - 18.years) %>"
+    phone: '2222222222'
+    new: true
+    address: "1 Bowling Lane"
+    city: "Winsted"
+    zip: "06098"

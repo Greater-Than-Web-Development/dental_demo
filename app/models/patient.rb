@@ -12,7 +12,8 @@ class Patient < ActiveRecord::Base
   validate :possible_age
   validates_format_of :birthday, with: /\d{2}\/\d{2}\/\d{4}/, message: "Birthday must be in mm/dd/YYYY format."
   validates :email, uniqueness: true
-  validates :email, :email => {:strict_mode => true}
+  validates :email, email: { strict_mode: true }
+  validates :email, presence: true
 
 
 
@@ -33,7 +34,7 @@ class Patient < ActiveRecord::Base
   end
 
   def possible_age
-    maximum_age = Date.today - 100.years.ago
+    maximum_age = Date.today - 100.years
     birthday = self.birthday
     birth_date = case birthday
 
@@ -63,6 +64,10 @@ class Patient < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def format_birthday(birthday)
+   birthday.to_date.strftime('%m/%d/%Y')
   end
 
 end
