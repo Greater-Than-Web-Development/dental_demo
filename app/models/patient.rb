@@ -12,7 +12,8 @@ class Patient < ActiveRecord::Base
   validate :possible_age
   validates_format_of :birthday, with: /\d{2}\/\d{2}\/\d{4}/, message: "Birthday must be in mm/dd/YYYY format."
   validates :email, uniqueness: true
-  validates :email, :email => {:strict_mode => true}
+  validates :email, email: { strict_mode: true }
+  validates :email, presence: true
 
 
 
