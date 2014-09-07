@@ -75,7 +75,9 @@ ActiveRecord::Schema.define(version: 20140901234722) do
   end
 
   create_table "chairs", force: true do |t|
+    t.integer  "office_id"
     t.string   "room"
+    t.boolean  "booked",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,13 +85,11 @@ ActiveRecord::Schema.define(version: 20140901234722) do
   create_table "dentists", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "office_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "hygienists", force: true do |t|
-    t.integer  "office_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "works_on"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 20140901234722) do
   create_table "offices", force: true do |t|
     t.string   "name"
     t.text     "address"
+    t.string   "zip"
+    t.string   "city"
     t.string   "phone"
     t.string   "fax"
     t.datetime "created_at"
@@ -110,9 +112,11 @@ ActiveRecord::Schema.define(version: 20140901234722) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "birthday"
-    t.boolean  "new"
+    t.boolean  "new_patient"
     t.string   "phone"
     t.text     "address"
+    t.string   "city"
+    t.string   "zip"
     t.integer  "pwid"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -135,7 +139,7 @@ ActiveRecord::Schema.define(version: 20140901234722) do
     t.time     "start_time"
     t.time     "end_time"
     t.date     "date"
-    t.boolean  "availability"
+    t.boolean  "booked",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -34,7 +34,7 @@ class Patient < ActiveRecord::Base
   end
 
   def possible_age
-    maximum_age = Date.today - 100.years.ago
+    maximum_age = Date.today - 100.years
     birthday = self.birthday
     birth_date = case birthday
 

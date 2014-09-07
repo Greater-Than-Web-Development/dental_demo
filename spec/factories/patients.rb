@@ -11,9 +11,11 @@ FactoryGirl.define do
     email {Faker::Internet.email}
     password "password1"
     birthday {rand(19..50).years.ago.strftime('%m/%d/%Y')}
-    new_patient {[1,2][rand 2]}
-    phone "MyString"
-    address "MyText"
+    new_patient {[true,false][rand 2]}
+    phone {Faker::PhoneNumber.cell_phone}
+    address {Faker::Address.street_address}
+    zip {Faker::Address.zip}
+    city {Faker::Address.city}
     pwid {pwid_values.slice!(0)}
   end
 end
