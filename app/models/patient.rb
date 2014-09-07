@@ -65,4 +65,8 @@ class Patient < ActiveRecord::Base
     end
   end
 
+  def format_birthday(birthday)
+   birthday.to_date.strftime('%m/%d/%Y')
+  end
+
 end

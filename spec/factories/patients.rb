@@ -10,8 +10,8 @@ FactoryGirl.define do
     last_name {Faker::Name.last_name}
     email {Faker::Internet.email}
     password "password1"
-    birthday {Time.at(rand * Time.now.to_i - 18.years)}
-    new {[1,2][rand 2]}
+    birthday {rand(19..50).years.ago.strftime('%m/%d/%Y')}
+    new_patient {[1,2][rand 2]}
     phone "MyString"
     address "MyText"
     pwid {pwid_values.slice!(0)}
