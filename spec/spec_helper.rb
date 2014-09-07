@@ -12,20 +12,9 @@
 #
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
-
-#add this line under the other ones like it up top
-require "capybara/rspec"
-
-#set the default driver
-Capybara.javascript_driver = :webkit
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
-  #add this line at the bottom of the config section
-  #it saves us time when using FactoryGirl methods.
-  config.include FactoryGirl::Syntax::Methods
-
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -85,5 +74,5 @@ RSpec.configure do |config|
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
   end
-  =end
+=end
 end
