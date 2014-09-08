@@ -2,7 +2,8 @@ class CreateAppointmentRequests < ActiveRecord::Migration
   def change
     create_table :appointment_requests do |t|
       t.integer :appointment_id
-      t.date :date
+      t.string :date
+      t.string :type
       t.text :message
       t.time :time
       t.string :time_of_day

@@ -1,10 +1,12 @@
 class TimeSlot < ActiveRecord::Base
 
-  validate :availability, unless: "appointments.nil?"
-  # validates_with :workday
+  # each appointment has many time_slots and each time_slot appears in many appointments
 
-  has_many :appointments
-  has_many :chairs, through: :appointments
+  validate :availability, unless: "appointments.nil?"
+
+  has_many :bookings
+  has_many :appointments, through: :bookings
+  belongs_to :work_day
 
   def availability
     if self.chairs.count == 0
