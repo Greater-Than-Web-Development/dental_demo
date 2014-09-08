@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901234722) do
+ActiveRecord::Schema.define(version: 20140908100408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(version: 20140901234722) do
     t.string   "type"
     t.boolean  "patient_confirmed"
     t.boolean  "confirmation_sent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bookings", force: true do |t|
+    t.integer  "time_slot_id"
+    t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -140,6 +147,12 @@ ActiveRecord::Schema.define(version: 20140901234722) do
     t.time     "end_time"
     t.date     "date"
     t.boolean  "booked",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "work_days", force: true do |t|
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
