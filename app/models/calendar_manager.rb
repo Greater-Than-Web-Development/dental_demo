@@ -39,8 +39,10 @@ class CalendarManager
 
     #generate morning slots
     33.times do
-      time = TimeOfDay.parse(hour) + minute.minutes
-      @time_slots << TimeSlot.create{ work_day_id:  time.strftime("%I:%M %p") }
+      beginning = TimeOfDay.parse(hour) + minute.minutes
+      ending = start_time + 15.minutes
+      time_slot = TimeSlot.new work_day_id: self.workday.id, start_time: beginning.strftime("%I:%M %p"), end_time: ending.strftime("%I:%M %p")
+      @time_slots << time_slot
       minute += 15
     end
   end

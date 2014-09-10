@@ -51,7 +51,8 @@ ActiveRecord::Schema.define(version: 20140908100408) do
 
   create_table "appointment_requests", force: true do |t|
     t.integer  "appointment_id"
-    t.date     "date"
+    t.string   "date"
+    t.string   "type"
     t.text     "message"
     t.time     "time"
     t.string   "time_of_day"
@@ -63,7 +64,6 @@ ActiveRecord::Schema.define(version: 20140908100408) do
   create_table "appointments", force: true do |t|
     t.date     "date"
     t.integer  "dentist_id"
-    t.integer  "time_slot_id"
     t.integer  "chair_id"
     t.integer  "hygienist_id"
     t.integer  "patient_id"
@@ -143,16 +143,19 @@ ActiveRecord::Schema.define(version: 20140908100408) do
   add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true, using: :btree
 
   create_table "time_slots", force: true do |t|
-    t.time     "start_time"
-    t.time     "end_time"
+    t.integer  "work_day_id"
+    t.string   "start_time"
+    t.string   "end_time"
     t.date     "date"
-    t.boolean  "booked",     default: false
+    t.boolean  "booked",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "work_days", force: true do |t|
     t.date     "date"
+    t.string   "start_time"
+    t.string   "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
