@@ -1,10 +1,21 @@
 class CalendarManager
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  def initialize(workday,date=Date.today)
-    if workday.class == WorkDay
-      @workday = workday
+  attr_accessor :workday, :date
+
+  validates :workday, :date, presence: true
+  validates :workday, :date, uniqueness: true
+
+  def initialize(attrs = {})
+    attrs.each do |name, value|
+      send("#{name}=" value)
     end
-    @date = date
+  end
+
+  def persisted?
+    false
   end
 
   def generate_time_slots!
@@ -13,7 +24,6 @@ class CalendarManager
     minute = 0
     @time_slots = Array.new
 
-    #generate morning slots
     33.times do
       time = TimeOfDay.parse(hour) + minute.minutes
       @time_slots << time.strftime("%I:%M %p")
@@ -30,7 +40,7 @@ class CalendarManager
     #generate morning slots
     33.times do
       time = TimeOfDay.parse(hour) + minute.minutes
-      @time_slots << time.strftime("%I:%M %p")
+      @time_slots << TimeSlot.create{ work_day_id:  time.strftime("%I:%M %p") }
       minute += 15
     end
   end
@@ -48,4 +58,4 @@ class CalendarManager
     end
 
 
-end
+  end
