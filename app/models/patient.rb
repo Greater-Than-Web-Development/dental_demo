@@ -8,14 +8,12 @@ class Patient < ActiveRecord::Base
   has_many :appointments
 
   # Validations
+  validates :email, uniqueness: true, email: { strict_mode: true }
+  validates :email, :password, :birthday, presence: true
+  validates :password, length: { minimum: 7 }
+  validates_format_of :birthday, with: /\d{2}\/\d{2}\/\d{4}/, message: "Birthday must be in mm/dd/YYYY format."
   validate :old_enough
   validate :possible_age
-  validates_format_of :birthday, with: /\d{2}\/\d{2}\/\d{4}/, message: "Birthday must be in mm/dd/YYYY format."
-  validates :email, uniqueness: true
-  validates :email, email: { strict_mode: true }
-  validates :email, presence: true
-
-
 
   def old_enough
     minimum_age = Date.today - 18.years
@@ -43,7 +41,7 @@ class Patient < ActiveRecord::Base
     else raise "Unable to parse date, must be Date or String of format '%m/%d/%Y'"
     end
 
-    if birth_date > maximum_age
+    if birth_date < maximum_age
       errors.add(:birthday, 'Patient must younger than 100 years old to schedule an appointment online.')
     end
 

@@ -12,7 +12,7 @@ puts "Seeding chairs into database."
 
 ["room one", "room two"].each do |room|
   Chair.find_or_create_by(room: room) do |chair|
-    chair.booked: [true,false][rand(2)]
+    chair.booked = [true,false][rand(2)]
   end
 end
 
@@ -34,15 +34,25 @@ puts "Seeding 10 more patients."
 
 10.times do
 
-  Patient.create(first_name: Faker::Name.first_name, last_name:Faker::Name.last_name, email: Faker::Internet.email, password: "password1", birthday: rand(19..50).years.ago.strftime('%m/%d/%Y'), new_patient: [true,false][rand 2], phone: Faker::PhoneNumber.cell_phone, address: Faker::Address.street_address, zip: Faker::Address.zip, pwid: pwid_values.slice!(0), city: Faker::Address.city)
-
+  Patient.create
+    first_name: Faker::Name.first_name,
+    last_name:Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password: "password1",
+    birthday: rand(19..50).years.ago.strftime('%m/%d/%Y'),
+    new_patient: [true,false][rand 2],
+    phone: Faker::PhoneNumber.cell_phone,
+    address: Faker::Address.street_address,
+    zip: Faker::Address.zip,
+    pwid: pwid_values.slice!(0),
+    city: Faker::Address.city
 end
 
 puts "Seeding time slots."
 
 TimeSlot.create do |t|
-    t.start_time = "2014-09-01 19:18:02"
-    t.end_time = "2014-09-01 19:18:02"
-    t.date = "2014-09-01"
-    t.availability = true
-  end
+  t.start_time = "2014-09-01 19:18:02"
+  t.end_time = "2014-09-01 19:18:02"
+  t.date = "2014-09-01"
+  t.availability = true
+end
