@@ -8,9 +8,6 @@ gem 'rails', '4.1.5'
 
 gem 'nokogiri'
 
-#seeds file fake values
-gem 'faker'
-
 # store database contents in seeds file
 gem 'seed_dump'
 
@@ -25,6 +22,9 @@ gem 'email_validator'
 #seeds with Sprig
 
 gem 'sprig', group: :development
+
+#Time of Day library to make time field with AR easier
+gem 'tod'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
