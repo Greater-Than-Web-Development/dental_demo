@@ -12,7 +12,7 @@ puts "Seeding chairs into database."
 
 ["room one", "room two"].each do |room|
   Chair.find_or_create_by(room: room) do |chair|
-    chair.booked: [true,false][rand(2)]
+    chair.booked = [true,false][rand(2)]
   end
 end
 
