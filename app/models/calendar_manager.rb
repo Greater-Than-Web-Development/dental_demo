@@ -51,4 +51,14 @@ class CalendarManager
     puts "Removed #{slot} from #{self.workday.date}"
   end
 
+  def booked_times_for(workday)
+
+    #return all appointments
+
+  end
+
+#   does = is = { true => 'Yes', false => 'No' }
+# does[10 == 50]                       # => "No"
+# is[10 > 5]                           # => "Yes"
+
 end

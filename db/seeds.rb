@@ -48,9 +48,18 @@ puts "Seeding 10 more patients."
     city: Faker::Address.city
 end
 
+puts "Seeding Workdays."
+
+10.times do
+  Workday.create(start_time: Workday.time_slot_format(rand(9..17)), end_time: Workday.time_slot_format(rand(9..17)))
+end
+
+CalendarManager.new(workday: WorkDay.create(), date: Workday.date )
+
 puts "Seeding time slots."
 
 TimeSlot.create do |t|
+  t.work_day_id =
   t.start_time = "2014-09-01 19:18:02"
   t.end_time = "2014-09-01 19:18:02"
   t.date = "2014-09-01"

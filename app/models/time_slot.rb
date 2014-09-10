@@ -1,5 +1,5 @@
 class TimeSlot < ActiveRecord::Base
-
+  extend AppointmentTools
   # each appointment has many time_slots and each time_slot appears in many appointments
 
   # validate :availability, unless: "appointments.nil?"
@@ -18,6 +18,10 @@ class TimeSlot < ActiveRecord::Base
   #   else
   #     self.booked = true
   #   end
+  # end
+
+  #  def bookable?(*time_slots, workday)
+
   # end
 
 end
