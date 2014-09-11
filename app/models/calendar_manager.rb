@@ -35,7 +35,7 @@ class CalendarManager
     end
   end
 
-  def add_new_slot(num_minutes= 60)
+  def add_new_time(num_minutes= 60)
     if @time_slots.empty?
       last_slot = "09:00 AM"
     else
@@ -46,16 +46,25 @@ class CalendarManager
     end
   end
 
-  def remove_slot(index=-1)
+  def remove_time(index=-1)
     slot = @time_slots.slice!(index)
     puts "Removed #{slot} from #{self.workday.date}"
   end
+  #TODO: finish
 
-  def booked_times_for(workday)
+  # def self.add_new_slot(starts,ends,workday)
+  #   workday = WorkDay.find(workday.id)
+  #   unless starts > ends
 
-    #return all appointments
+  #     TimeSlot.create()
+  #   end
+  # end
 
-  end
+  # def booked_times_for(workday)
+
+  #   #return all appointments
+
+  # end
 
 #   does = is = { true => 'Yes', false => 'No' }
 # does[10 == 50]                       # => "No"
