@@ -8,6 +8,11 @@ class TimeSlot < ActiveRecord::Base
   has_many :appointments, through: :bookings
   belongs_to :work_day
 
+  def open
+    slot = Shift.new(TimeOfDay.new(self.start_time), TimeOfDay.new(self.end_time))
+
+  end
+
   # def availability
   #   if self.chairs.count == 0
   #     self.booked = false
