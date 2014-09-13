@@ -9,8 +9,13 @@ class TimeSlot < ActiveRecord::Base
   belongs_to :work_day
 
   def open
-    slot = Shift.new(TimeOfDay.new(self.start_time), TimeOfDay.new(self.end_time))
+    @range ||= Shift.new(TimeOfDay.parse(self.start_time), TimeOfDay.parse(self.end_time))
+  end
 
+
+  def duration(unit= "hours")
+    @range ||= Shift.new(TimeOfDay.parse(self.start_time), TimeOfDay.parse(self.end_time))
+    @range.duration / 1.try(unit).to_f
   end
 
   # def availability
