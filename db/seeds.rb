@@ -42,42 +42,43 @@ end
 puts "Seeding AdminUser account."
 
 AdminUser.create! do |a|
-  a.email = ENV[ADMIN_EMAIL_DEVELOPMENT]
-  a.password = ENV[ADMIN_PASSWORD_DEVELOPMENT]
+  a.email = ENV["admin_email_development"]
+  a.password = ENV["admin_password_development"]
 end
 
 puts "Seeding first patient."
-
+pwid_values = (1..10).to_a
+patient_birthday = 26.years.ago.strftime('%m/%d/%Y')
+puts " #{patient_birthday.class }"
 Patient.create! do |p|
-  p.first_name = "Ryan",
-  p.last_name = "Kelley",
-  p.email = ENV[PATIENT_EMAIL_DEVELOPMENT]
-  p.password = ENV[PATIENT_PASSWORD_DEVELOPMENT]
-  p.birthday = 26.years.ago.strftime('%m/%d/%Y')
-  p.new_patient = false,
-  p.phone = Faker::PhoneNumber.cell_phone,
-  p.address = Faker::Address.street_address,
-  p.zip = Faker::Address.zip,
-  p.pwid = pwid_values.slice!(0),
+  p.first_name = "Ryan"
+  p.last_name = "Kelley"
+  p.email = ENV["patient_email_development"]
+  p.password = ENV["patient_password_development"]
+  p.birthday = patient_birthday
+  p.new_patient = false
+  p.phone = Faker::PhoneNumber.cell_phone
+  p.address = Faker::Address.street_address
+  p.zip = Faker::Address.zip
+  p.pwid = pwid_values.slice(0)
   p.city = Faker::Address.city
 end
 
 puts "Seeding 10 more patients."
-pwid_values = (1..10).to_a
+rand_birthday = rand(19..50).years.ago.strftime('%m/%d/%Y')
 
 10.times do
-
-  Patient.create do |p|
-    p.first_name = Faker::Name.first_name,
-    p.last_name = Faker::Name.last_name,
-    p.email = Faker::Internet.email,
-    p.password = "password1",
-    p.birthday = rand(19..50).years.ago.strftime('%m/%d/%Y'),
-    p.new_patient = [true,false][rand 2],
-    p.phone = Faker::PhoneNumber.cell_phone,
-    p.address = Faker::Address.street_address,
-    p.zip = Faker::Address.zip,
-    p.pwid = pwid_values.slice!(0),
+  Patient.create! do |p|
+    p.first_name = Faker::Name.first_name
+    p.last_name = Faker::Name.last_name
+    p.email = Faker::Internet.email
+    p.password = "password1"
+    p.birthday = rand_birthday
+    p.new_patient = [true,false][rand 2]
+    p.phone = Faker::PhoneNumber.cell_phone
+    p.address = Faker::Address.street_address
+    p.zip = Faker::Address.zip
+    p.pwid = pwid_values.slice!(0)
     p.city = Faker::Address.city
   end
 end
@@ -108,20 +109,20 @@ patients = Patient.all
 rand_types = ["cleaning", "checkup", "filling"]
 
 puts "Seeding one appointment per workday"
-
+workday_number = 1
 5.times do
 
-  Appointment.create do |a|
-    a.date = workdays[workday_number].date
+  Appointment.create! do |a|
+    a.date = workdays[workday_number - 1].date
     a.dentist_id = Dentist.first.id
     a.chair_id = Chair.first.id
     a.hygienist_id = Hygienist.first.id
-    a.patient_id = patients.slice!(0)
+    a.patient_id = patients.slice(1 + workday_number).id
     a.type = rand_types[rand(1..3)]
     a.patient_confirmed = false
     a.confirmation_sent = false
   end
-  workday_number -= 1
+  workday_number += 1
 end
 
 
