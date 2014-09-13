@@ -115,7 +115,6 @@ workday_number = 1
 
   Appointment.create! do |a|
     a.dentist_id = Dentist.first.id
-    a.chair_id = Chair.first.id
     a.hygienist_id = Hygienist.first.id
     a.patient_id = patients.slice(1 + workday_number).id
     a.of_type = of_types_list[rand(1..3)]
@@ -124,5 +123,4 @@ workday_number = 1
   end
   workday_number += 1
 end
-
 
