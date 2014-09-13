@@ -18,6 +18,10 @@ class TimeSlot < ActiveRecord::Base
     @range.duration / 1.try(unit).to_f
   end
 
+  # def same_chair
+  #   filled_chairs_at_time = self.appointments.map(&:chair)
+  # end
+
   # def availability
   #   if self.chairs.count == 0
   #     self.booked = false

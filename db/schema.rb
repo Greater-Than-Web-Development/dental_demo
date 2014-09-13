@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20140908100408) do
   end
 
   create_table "appointments", force: true do |t|
-    t.date     "date"
     t.integer  "dentist_id"
     t.integer  "chair_id"
     t.integer  "hygienist_id"

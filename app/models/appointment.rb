@@ -7,4 +7,6 @@ class Appointment < ActiveRecord::Base
   has_many :bookings
   has_many :time_slots, through: :bookings
 
+  # validates_uniqueness_of :chair_id, scope: :time_slot_id
+
 end
