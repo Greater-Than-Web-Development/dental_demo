@@ -114,7 +114,6 @@ workday_number = 1
 5.times do
 
   Appointment.create! do |a|
-    a.date = workdays[workday_number - 1].date
     a.dentist_id = Dentist.first.id
     a.chair_id = Chair.first.id
     a.hygienist_id = Hygienist.first.id
