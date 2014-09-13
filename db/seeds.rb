@@ -46,10 +46,11 @@ AdminUser.create! do |a|
   a.password = ENV["admin_password_development"]
 end
 
-puts "Seeding first patient."
+
 pwid_values = (1..10).to_a
 patient_birthday = 26.years.ago.strftime('%m/%d/%Y')
-puts " #{patient_birthday.class }"
+puts "Seeding first patient, born on #{patient_birthday}."
+
 Patient.create! do |p|
   p.first_name = "Ryan"
   p.last_name = "Kelley"
@@ -106,7 +107,7 @@ workdays.each do |workday|
 end
 
 patients = Patient.all
-rand_types = ["cleaning", "checkup", "filling"]
+of_types_list = ["cleaning", "checkup", "filling"]
 
 puts "Seeding one appointment per workday"
 workday_number = 1
@@ -118,7 +119,7 @@ workday_number = 1
     a.chair_id = Chair.first.id
     a.hygienist_id = Hygienist.first.id
     a.patient_id = patients.slice(1 + workday_number).id
-    a.type = rand_types[rand(1..3)]
+    a.of_type = of_types_list[rand(1..3)]
     a.patient_confirmed = false
     a.confirmation_sent = false
   end

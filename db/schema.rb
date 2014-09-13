@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20140908100408) do
     t.integer  "chair_id"
     t.integer  "hygienist_id"
     t.integer  "patient_id"
-    t.string   "type"
+    t.string   "of_type"
     t.boolean  "patient_confirmed"
     t.boolean  "confirmation_sent"
     t.datetime "created_at"

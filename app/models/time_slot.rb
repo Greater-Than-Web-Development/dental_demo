@@ -23,7 +23,7 @@ class TimeSlot < ActiveRecord::Base
   #     self.booked = false
   #   elsif self.chairs.count == 2
   #     self.booked = true
-  #   elsif self.chairs.count == 1 and self.appointment.type == "cleaning"
+  #   elsif self.chairs.count == 1 and self.appointment.of_type == "cleaning"
   #     self.booked = false
   #   else
   #     self.booked = true
