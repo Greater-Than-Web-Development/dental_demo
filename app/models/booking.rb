@@ -2,21 +2,28 @@ class Booking < ActiveRecord::Base
 
   belongs_to :time_slot
   belongs_to :chair
-  belongs_to :appointment, -> { includes :chair }
+  belongs_to :appointment
 
-  #one appointment can't be made twice for the same time_slot
-  validates_uniqueness_of :appointment_id, scope: :time_slot_id
+  # One appointment can't be made twice for the same time_slot
+  validates_uniqueness_of :appointment_id, { scope: :time_slot_id, message: "The same appointment can't be made twice for the same time slot." }
+
+  # Two bookings can't have the same chair if they have the same time
+  validates_uniqueness_of :chair_id, { scope: :time_slot_id, message: "Multiple appointments can't be book for the same chair, at the same time." }
+
+  # A time_slot can have a maximum of 1 booking for appointment.of_type = "major"
 
 
-  # def chair_open
-  # # two bookings for the same time slot can't be made for the same chair
-  #   chair_id = self.appointment.chair_id
-  #   self.appointment.chair_id == chair_id && self.time_slot_id == time_slot_id
 
-  #     if Booking.where(self.appointment.chaird_id) == chair_id
-  #   errors.add(:appointment, "Can't have two bookings in same chair at same time")
-  # end
+  def validate_available
 
-  # end
+    appointment = self.appointment
+    chair = self.chair
+    time_slot = self.time_slot
+
+  end
+
+
+    # Appointment.where(of_type: "major").any?
+
 
 end

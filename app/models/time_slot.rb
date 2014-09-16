@@ -12,10 +12,34 @@ class TimeSlot < ActiveRecord::Base
     @range ||= Shift.new(TimeOfDay.parse(self.start_time), TimeOfDay.parse(self.end_time))
   end
 
+  def booked?
+    if self.appointments.count == 0
+      self.booked = false
+    elsif self.appointments.count == 2
+      self.booked = true
+    elsif self.appointments.count == 1 and self.appointment.of_type == "minor"
+      self.booked = false
+    else
+      self.booked = true
+    end
+  end
 
-  def duration(unit= "hours")
-    @range ||= Shift.new(TimeOfDay.parse(self.start_time), TimeOfDay.parse(self.end_time))
-    @range.duration / 1.try(unit).to_f
+  def totally_clear?
+    self.appointments.count == 0
+  end
+
+
+  def duration_in(unit= "hours")
+    @range ||= self.open
+    duration = @range.duration / 1.try(unit).to_f
+    case unit.downcase
+    when "minutes"
+      duration * 60
+    when "seconds"
+      duration * 60
+    else
+      duration
+    end
   end
 
   # def same_chair
