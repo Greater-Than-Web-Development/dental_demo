@@ -23,6 +23,14 @@ class Appointment < ActiveRecord::Base
     end
   end
 
+  def minor?
+    if !self.of_type.nil?
+      self.of_type == "major".downcase
+    else
+      false
+    end
+  end
+
   # validates_uniqueness_of :chair_id, scope: :time_slot_id
 
 end

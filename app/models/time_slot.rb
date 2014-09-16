@@ -17,7 +17,7 @@ class TimeSlot < ActiveRecord::Base
       self.booked = false
     elsif self.appointments.count == 2
       self.booked = true
-    elsif self.appointments.count == 1 and self.appointment.of_type == "minor"
+    elsif self.appointments.count == 1 and self.appointments.last.of_type == "minor"
       self.booked = false
     else
       self.booked = true
