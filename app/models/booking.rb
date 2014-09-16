@@ -20,11 +20,9 @@ class Booking < ActiveRecord::Base
     time_slot = self.time_slot
 
     if appointment.major?
-
       unless time_slot.totally_clear?
         record.errors[:base] << "Time slot needs to have 0 bookings before an appointment of type 'major' can be booked."
       end
-
     end
 
     if appointment.minor?
