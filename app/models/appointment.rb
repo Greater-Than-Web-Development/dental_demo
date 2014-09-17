@@ -6,7 +6,7 @@ class Appointment < ActiveRecord::Base
   has_many :bookings
   has_many :time_slots, through: :bookings
 
-  validates :of_type, inclusion: { in: %w(major minor),
+  validates :of_type, inclusion: { in: %w(major minor closed),
     message: "%{value} is not a valid appointment type, please choose either 'major' or 'minor' " }
 
   # Scope
@@ -25,7 +25,15 @@ class Appointment < ActiveRecord::Base
 
   def minor?
     if !self.of_type.nil?
-      self.of_type == "major".downcase
+      self.of_type == "minor".downcase
+    else
+      false
+    end
+  end
+
+  def closed?
+    if !self.of_type.nil?
+      self.of_type == "closed".downcase
     else
       false
     end

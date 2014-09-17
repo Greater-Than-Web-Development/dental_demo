@@ -127,3 +127,8 @@ workday_number = 1
   end
   workday_number += 1
 end
+
+puts "Seeding one major appointment on last workday"
+Appointment.create!( :dentist_id => Dentist.first.id, :hygienist_id => Hygienist.first.id, :patient_id => Patient.find_by_email(ENV["patient_email_development"]).id, :of_type => "major", :patient_confirmed => false, :confirmation_sent => false )
+
+

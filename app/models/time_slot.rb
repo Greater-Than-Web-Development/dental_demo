@@ -8,19 +8,19 @@ class TimeSlot < ActiveRecord::Base
   has_many :appointments, through: :bookings
   belongs_to :work_day
 
-  def open
-    @range ||= Shift.new(TimeOfDay.parse(self.start_time), TimeOfDay.parse(self.end_time))
-  end
-
   def booked?
     if self.appointments.count == 0
-      self.booked = false
+      self.update(booked: false)
+      return false
     elsif self.appointments.count == 2
-      self.booked = true
+      self.update(booked: true)
+      return true
     elsif self.appointments.count == 1 and self.appointments.last.of_type == "minor"
-      self.booked = false
+      self.update(booked: false)
+      return false
     else
-      self.booked = true
+      self.update(booked: true)
+      return true
     end
   end
 
@@ -28,9 +28,18 @@ class TimeSlot < ActiveRecord::Base
     self.appointments.count == 0
   end
 
+  def allow_major?
+    if self.appointments.count == 0
+      true
+    elsif self.appointments.count == 1 && self.appointments.where(of_type: "major").empty?
+      true
+    else
+      false
+    end
+  end
 
   def duration_in(unit= "hours")
-    @range ||= self.open
+    @range ||= self.range
     duration = @range.duration / 1.try(unit).to_f
     case unit.downcase
     when "minutes"
