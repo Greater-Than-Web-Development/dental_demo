@@ -5,8 +5,13 @@ module AppointmentTools
     TimeOfDay.parse(time).strftime('%I:%M %p')
   end
 
-  def range(start_range=start_time, end_range=end_time)
-    @range ||= Shift.new(TimeOfDay.parse(self.try(start_range)), TimeOfDay.parse(self.try(end_range)))
+  def range(start_range, end_range)
+    @range ||= Shift.new(TimeOfDay.parse(start_range), TimeOfDay.parse(end_range))
   end
+
+  # def adjacent?(object1, object2)
+  #   if object1.start_time > object2.start_time
+  #   end
+  # end
 
 end

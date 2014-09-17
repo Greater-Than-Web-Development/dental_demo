@@ -2,6 +2,7 @@ class CalendarManager
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
+  extend AppointmentTools
 
   attr_accessor :workday, :date
 
@@ -16,6 +17,12 @@ class CalendarManager
 
   def persisted?
     false
+  end
+
+  def book_slots_between(booking_first, booking_last)
+    start_point = booking_first.time_slot.start_time
+    end_point = booking_last.time_slot.end_time
+    range = self.range(start_point, end_point)
   end
 
   #ToDo make method more flexible

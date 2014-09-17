@@ -8,6 +8,7 @@ class TimeSlot < ActiveRecord::Base
 
   has_many :bookings
   has_many :appointments, through: :bookings
+  has_many :chairs, through: :bookings
   belongs_to :work_day
 
   def update_booked
