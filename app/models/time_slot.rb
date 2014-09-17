@@ -4,25 +4,33 @@ class TimeSlot < ActiveRecord::Base
 
   # validate :availability, unless: "appointments.nil?"
 
+  before_save :update_booked
+
   has_many :bookings
   has_many :appointments, through: :bookings
   belongs_to :work_day
 
-  def booked?
-    if self.appointments.count == 0
-      self.update(booked: false)
-      return false
-    elsif self.appointments.count == 2
+  def update_booked
+    if self.booked?
       self.update(booked: true)
-      return true
-    elsif self.appointments.count == 1 and self.appointments.last.of_type == "minor"
-      self.update(booked: false)
-      return false
     else
-      self.update(booked: true)
-      return true
+      self.update(booked: false)
     end
   end
+
+  # Major or minor appointments can be booked concurrently with a max of 2 appointments.
+  def booked?
+    if self.appointments.count == 0
+      return false # It is not booked booked.
+    elsif self.appointments.count == 2
+      return true # It is booked.
+    elsif self.appointments.count == 1 and !self.appointments.last.closed?
+      return false # It is not booked.
+    else
+      return true # It is booked.
+    end
+  end
+
 
   def totally_clear?
     self.appointments.count == 0
@@ -31,8 +39,8 @@ class TimeSlot < ActiveRecord::Base
   def allow_major?
     if self.appointments.count == 0
       true
-    elsif self.appointments.count == 1 && self.appointments.where(of_type: "major").empty?
-      true
+    elsif self.appointments.count == 1 && !self.appointments.where(of_type: "minor").empty?
+      true # If there's 1 appointment and that appointment is minor
     else
       false
     end

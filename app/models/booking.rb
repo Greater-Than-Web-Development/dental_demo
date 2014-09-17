@@ -14,6 +14,8 @@ class Booking < ActiveRecord::Base
   # Minor appointments can be booked with other minor appointments for the same time slots
   validate :validate_available
 
+  # Two time_slots can have the same appointment_id only if they're adjacent
+
   # A time_slot can have a maximum of 1 booking for appointment.of_type = "major"
 
 
