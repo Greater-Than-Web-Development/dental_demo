@@ -31,6 +31,4 @@ class Appointment < ActiveRecord::Base
     end
   end
 
-  # validates_uniqueness_of :chair_id, scope: :time_slot_id
-
 end

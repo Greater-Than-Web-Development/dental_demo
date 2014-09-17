@@ -41,9 +41,11 @@ end
 
 puts "Seeding AdminUser account."
 
-AdminUser.create! do |a|
-  a.email = ENV["admin_email_development"]
-  a.password = ENV["admin_password_development"]
+unless AdminUser.any?
+  AdminUser.create! do |a|
+    a.email = ENV["admin_email_development"]
+    a.password = ENV["admin_password_development"]
+  end
 end
 
 
@@ -51,18 +53,20 @@ pwid_values = (1..10).to_a
 patient_birthday = 26.years.ago.strftime('%m/%d/%Y')
 puts "Seeding first patient, born on #{patient_birthday}."
 
-Patient.create! do |p|
-  p.first_name = "Ryan"
-  p.last_name = "Kelley"
-  p.email = ENV["patient_email_development"]
-  p.password = ENV["patient_password_development"]
-  p.birthday = patient_birthday
-  p.new_patient = false
-  p.phone = Faker::PhoneNumber.cell_phone
-  p.address = Faker::Address.street_address
-  p.zip = Faker::Address.zip
-  p.pwid = pwid_values.slice(0)
-  p.city = Faker::Address.city
+if Patient.find_by_email(ENV["patient_email_development"]).nil?
+  Patient.create! do |p|
+    p.first_name = "Ryan"
+    p.last_name = "Kelley"
+    p.email = ENV["patient_email_development"]
+    p.password = ENV["patient_password_development"]
+    p.birthday = patient_birthday
+    p.new_patient = false
+    p.phone = Faker::PhoneNumber.cell_phone
+    p.address = Faker::Address.street_address
+    p.zip = Faker::Address.zip
+    p.pwid = pwid_values.slice(0)
+    p.city = Faker::Address.city
+  end
 end
 
 puts "Seeding 10 more patients."
@@ -107,7 +111,7 @@ workdays.each do |workday|
 end
 
 patients = Patient.all
-of_types_list = ["cleaning", "checkup", "filling"]
+of_types_list = ["major", "minor"]
 
 puts "Seeding one appointment per workday"
 workday_number = 1
@@ -117,10 +121,9 @@ workday_number = 1
     a.dentist_id = Dentist.first.id
     a.hygienist_id = Hygienist.first.id
     a.patient_id = patients.slice(1 + workday_number).id
-    a.of_type = of_types_list[rand(1..3)]
+    a.of_type = of_types_list[rand(2)]
     a.patient_confirmed = false
     a.confirmation_sent = false
   end
   workday_number += 1
 end
-
