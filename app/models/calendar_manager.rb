@@ -20,24 +20,47 @@ class CalendarManager
   end
 
   def book_slots_between(booking_first, booking_last)
+
     first_slot = booking_first.time_slot
     second_slot = booking_last.time_slot
 
-    if CalendarManager.adjacent?(first_slot, second_slot, @slot_length)
-      return false
-    else
-      start_point = first_slot.start_time
-      end_point = second_slot.end_time
-      range = self.range(start_point, end_point)
+    return false if CalendarManager.adjacent?(first_slot, second_slot, @slot_length) || !booking_first.same_workday_as?(booking_last)
 
-      time_slots = self.workday.time_slots
+    return false if booking_first.same_appointment_as?(booking_last)
 
-      time_slots.select{|time_slot| if range.include?(time_slot.)}
+    start_point = first_slot.start_time
+    end_point = second_slot.end_time
+    range = self.range(start_point, end_point)
 
-      if range.include?()
-      end
+    time_slots = self.return_slots_between(start_point, end_point)
+
+    included_slots = time_slots.select{|time_slot| range.include?(time_slot.start_time)}
+
+    if CalendarManager.any_booked_slots_in?(included_slots)
+      puts "Appointment can't "
+
+      CalendarManager.all_clear_in?(included_slots)
 
     end
+
+
+
+  end
+
+  def self.any_booked_slots_in?(arr_of_times)
+    arr_of_times.any?{|t| t.booked? }
+  end
+
+  def self.all_clear_in?(arr_of_times)
+    if arr_of_times.any?{|t| !t.totally_clear? }
+      false
+    else
+      true
+    end
+  end
+
+  def return_slots_between(start, ending)
+    self.workday.time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending } )
   end
 
   #ToDo make method more flexible

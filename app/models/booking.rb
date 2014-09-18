@@ -39,4 +39,13 @@ class Booking < ActiveRecord::Base
   end
 
 
+  def same_appointment_as?(booking)
+    self.appointment.id == booking.appointment.id
+  end
+
+  def same_workday_as?(booking)
+    self.time_slot.workday.id == booking.time_slot.workday.id
+  end
+
+
 end
