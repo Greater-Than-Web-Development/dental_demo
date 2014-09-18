@@ -6,12 +6,11 @@ module AppointmentTools
   end
 
   def range(start_range, end_range)
-    @range ||= Shift.new(TimeOfDay.parse(start_range), TimeOfDay.parse(end_range))
+    Shift.new(TimeOfDay.parse(start_range), TimeOfDay.parse(end_range))
   end
 
-  # def adjacent?(object1, object2)
-  #   if object1.start_time > object2.start_time
-  #   end
-  # end
+  def self.adjacent?(object1, object2, increment=0)
+    object1.start_time + increment.minutes == object2.start_time
+  end
 
 end

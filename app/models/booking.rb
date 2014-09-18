@@ -20,7 +20,6 @@ class Booking < ActiveRecord::Base
 
 
   def validate_available
-
     appointment = self.appointment
     time_slot = self.time_slot
 
@@ -33,7 +32,7 @@ class Booking < ActiveRecord::Base
         errors[:base] << "Time already booked. Time slot needs to have 0 or 1 bookings before an appointment of type 'minor' can be booked."
       end
     elsif appointment.closed?
-      if time_slot.booked?
+      unless time_slot.totally_clear?
         errors[:base] << "Time has an appointment booked already. You may only close empty slots."
       end
     end

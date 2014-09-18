@@ -1,15 +1,14 @@
 class TimeSlot < ActiveRecord::Base
   extend AppointmentTools
-  # each appointment has many time_slots and each time_slot appears in many appointments
 
-  # validate :availability, unless: "appointments.nil?"
-
-  before_save :update_booked
-
+  # Each appointment can cover multiple time_slots and each time_slot can include many appointments
   has_many :bookings
   has_many :appointments, through: :bookings
   has_many :chairs, through: :bookings
   belongs_to :work_day
+
+  # Before saving to database, make sure to update booked attribute
+  before_save :update_booked
 
   def update_booked
     if self.booked?
