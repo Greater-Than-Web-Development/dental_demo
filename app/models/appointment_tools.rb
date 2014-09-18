@@ -10,7 +10,7 @@ module AppointmentTools
   end
 
   def self.adjacent?(object1, object2, increment=0)
-    object1.start_time + increment.minutes == object2.start_time
+    object1.end_time + increment.minutes == object2.start_time
   end
 
 end

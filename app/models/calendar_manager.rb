@@ -21,13 +21,37 @@ class CalendarManager
 
   # Check all available majors
 
+  def print_time_slots_for_major_bookings
+    time_slots = self.workday.time_slots
+    major_times = time_slots.select{|t| t.allow_major?}
+
+    available_times = Array.new
+    major_times.each_with_index do |t, index|
+      if AppointmentTools.adjacent?(t, major_times[index + 1])
+        available_times << t
+      end
+    end
+
+    major_times.select{ |at| AppointmentTools.adjacent?(at, TimeSlot.find(at.id)) }
+
+    time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
+  end
+
+  def print_time_slots_for_minor_bookings
+
+  end
+
+  def print_time_slots_for_closed_bookings
+
+  end
+
   # Print all available start_times for each appointment type
 
   def book_slots_between(booking_first, booking_last)
     first_slot = booking_first.time_slot
     second_slot = booking_last.time_slot
 
-    return false if CalendarManager.adjacent?(first_slot, second_slot, @slot_length) || !booking_first.same_workday_as?(booking_last)
+    return false if AppointmentTools.adjacent?(first_slot, second_slot, @slot_length) || !booking_first.same_workday_as?(booking_last)
     return false unless booking_first.same_appointment_as?(booking_last)
 
     start_point = first_slot.start_time
