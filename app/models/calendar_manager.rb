@@ -19,36 +19,44 @@ class CalendarManager
     false
   end
 
-  def book_slots_between(booking_first, booking_last)
+  # Check all available majors
 
+  # Print all available start_times for each appointment type
+
+  def book_slots_between(booking_first, booking_last)
     first_slot = booking_first.time_slot
     second_slot = booking_last.time_slot
 
     return false if CalendarManager.adjacent?(first_slot, second_slot, @slot_length) || !booking_first.same_workday_as?(booking_last)
-
-    return false if booking_first.same_appointment_as?(booking_last)
+    return false unless booking_first.same_appointment_as?(booking_last)
 
     start_point = first_slot.start_time
     end_point = second_slot.end_time
     range = self.range(start_point, end_point)
 
     time_slots = self.return_slots_between(start_point, end_point)
-
     included_slots = time_slots.select{|time_slot| range.include?(time_slot.start_time)}
 
-    if CalendarManager.any_booked_slots_in?(included_slots)
-      puts "Appointment can't "
-
-      CalendarManager.all_clear_in?(included_slots)
-
+    # If any of the time_slots are major_or_closed or booked and the new booking is major or closed
+    if CalendarManager.any_major_or_closed_or_booked_in?(included_slots) and booking_first.appointment.major_or_closed?
+      puts "Major or closed appointments can't overlap other major or closed appointments, nor booked appointments."
+      return false
+    else
+      # Book each included time_slot to same appointment as first and last booking
+      CalendarManager.book_range!(booking_first, included_slots)
     end
-
-
-
   end
 
   def self.any_booked_slots_in?(arr_of_times)
     arr_of_times.any?{|t| t.booked? }
+  end
+
+  def self.any_major_or_closed_or_booked_in?(arr_of_times)
+    if arr_of_times.any?{|t| t.any_major_or_closed_appointments? } || arr_of_times.any?{|t| t.booked? }
+      true
+    else
+      false
+    end
   end
 
   def self.all_clear_in?(arr_of_times)
@@ -60,7 +68,7 @@ class CalendarManager
   end
 
   def return_slots_between(start, ending)
-    self.workday.time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending } )
+    self.workday.time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
   end
 
   #ToDo make method more flexible
@@ -82,47 +90,25 @@ class CalendarManager
     end
   end
 
+  def self.book_range!(booking, time_slots)
+    time_slots.each{|t| Booking.create( time_slot_id: t.id, appointment_id: booking.appointment.id, chair_id: booking.chair.id ) }
+  end
+
   def remove_time(index=-1)
     slot = @time_slots.slice!(index)
     puts "Removed #{slot} from #{self.workday.date}"
   end
 
-#ToDo needs start and end time,
-def add_slot_to_end(num_minutes= 60)
-  if @time_slots.empty?
-    last_slot = "09:00 AM"
-  else
-    last_slot = Time.parse(@time_slots.last)
-    new_slot = last_slot + num_minutes.minutes
+  #ToDo needs start and end time,
+  def add_slot_to_end(num_minutes= 60)
+    if @time_slots.empty?
+      last_slot = "09:00 AM"
+    else
+      last_slot = Time.parse(@time_slots.last)
+      new_slot = last_slot + num_minutes.minutes
 
-    @time_slots << new_slot.strftime("%I:%M %p")
+      @time_slots << new_slot.strftime("%I:%M %p")
+    end
   end
-end
-
-
-  # def book_appointment_for(start_time)
-  #   self.workday.time_slots
-  #   Booking.create(time_slot_id, appointment_id)
-  # end
-
-  #TODO: finish
-
-  # def self.add_new_slot(starts,ends,workday)
-  #   workday = WorkDay.find(workday.id)
-  #   unless starts > ends
-
-  #     TimeSlot.create()
-  #   end
-  # end
-
-  # def booked_times_for(workday)
-
-  #   #return all appointments
-
-  # end
-
-#   does = is = { true => 'Yes', false => 'No' }
-# does[10 == 50]                       # => "No"
-# is[10 > 5]                           # => "Yes"
 
 end

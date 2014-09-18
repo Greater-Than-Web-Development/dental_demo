@@ -36,6 +36,14 @@ class TimeSlot < ActiveRecord::Base
     self.appointments.count == 0
   end
 
+  def any_major_or_closed_appointments?
+    if self.appointments.count > 0
+      self.appointments.any?{|a| a.major_or_closed? }
+    else
+      false
+    end
+  end
+
   def allow_major?
     if self.appointments.count == 0
       true

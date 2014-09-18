@@ -31,6 +31,14 @@ class Appointment < ActiveRecord::Base
     end
   end
 
+  def major_or_closed?
+    if self.minor? || self.major?
+      true
+    else
+      false
+    end
+  end
+
   def closed?
     if !self.of_type.nil?
       self.of_type == "closed".downcase
