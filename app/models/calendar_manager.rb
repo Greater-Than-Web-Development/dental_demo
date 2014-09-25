@@ -32,9 +32,9 @@ class CalendarManager
       end
     end
 
-    major_times.select{ |at| AppointmentTools.adjacent?(at, TimeSlot.find(at.id)) }
+    # major_times.select{ |at| AppointmentTools.adjacent?(at, TimeSlot.find(at.id)) }
 
-    time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
+    # time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
   end
 
   def print_time_slots_for_minor_bookings
