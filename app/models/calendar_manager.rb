@@ -21,29 +21,38 @@ class CalendarManager
 
   # Check all available majors
 
-  def print_time_slots_for_major_bookings
-    time_slots = self.workday.time_slots
-    major_times = time_slots.select{|t| t.allow_major?}
+  # def print_time_slots_for_major_bookings
+  #   time_slots = self.workday.time_slots
+  #   major_times = time_slots.select{|t| t.allow_major?}
 
-    available_times = Array.new
-    major_times.each_with_index do |t, index|
-      if AppointmentTools.adjacent?(t, major_times[index + 1])
-        available_times << t
-      end
-    end
+  #   available_times = Array.new
+  #   major_times.each_with_index do |t, index|
+  #     slot1 = t
+  #     break if t == major_times.last
+  #     # Major bookings must be 4 slots long or larger
+  #     slot2 = major_times[index + 1]
+  #     slot3 = major_times[index + 2]
+  #     slot4 = major_times[index + 3]
 
-    # major_times.select{ |at| AppointmentTools.adjacent?(at, TimeSlot.find(at.id)) }
 
-    # time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
-  end
+  #     if AppointmentTools.adjacent?(slot1, slot2) and AppointmentTools.adjacent?(slot2, slot3) and AppointmentTools.adjacent?(slot3, slot4)
+  #       available_times << slot1
+  #     end
 
-  def print_time_slots_for_minor_bookings
+  #   end
 
-  end
+  #   # major_times.select{ |at| AppointmentTools.adjacent?(at, TimeSlot.find(at.id)) }
 
-  def print_time_slots_for_closed_bookings
+  #   # time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
+  # end
 
-  end
+  # def print_time_slots_for_minor_bookings
+
+  # end
+
+  # def print_time_slots_for_closed_bookings
+
+  # end
 
   # Print all available start_times for each appointment type
 
