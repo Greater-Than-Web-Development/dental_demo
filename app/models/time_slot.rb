@@ -10,6 +10,7 @@ class TimeSlot < ActiveRecord::Base
   # Before saving to database, make sure to update booked attribute
   before_save :update_booked
 
+  # DEBUG: error in update_booked
   def update_booked
     if self.booked?
       self.update(booked: true)
