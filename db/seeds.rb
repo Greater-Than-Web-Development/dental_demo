@@ -93,7 +93,7 @@ puts "Seeding Workdays."
 day_numbers = (1..5).to_a
 5.times do
   start_time = WorkDay.time_slot_format(9)
-  end_time = WorkDay.time_slot_format([5,6][rand(2)])
+  end_time = WorkDay.time_slot_format([17,18][rand(2)])
   rand_date = Date.today + day_numbers.slice!(0)
   WorkDay.create(start_time: start_time, end_time: end_time, date: rand_date )
 end
