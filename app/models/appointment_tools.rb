@@ -17,11 +17,12 @@ module AppointmentTools
     Shift.new(TimeOfDay.parse(start_range), TimeOfDay.parse(end_range))
   end
 
-  def self.adjacent?(object1, object2, increment=0)
-    if object1.nil? or object2.nil?
+  def adjacent?(time_object1, time_object2, increment=0)
+
+    if time_object1.nil? or time_object2.nil?
       false
     else
-      tod_format(object1.end_time) + increment.minutes == tod_format(object2.start_time)
+      tod_format(time_object1.end_time) + increment.minutes == tod_format(time_object2.start_time)
     end
   end
 
