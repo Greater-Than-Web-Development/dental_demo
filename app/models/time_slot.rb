@@ -13,9 +13,9 @@ class TimeSlot < ActiveRecord::Base
   # DEBUG: error in update_booked
   def update_booked
     if self.booked?
-      self.update(booked: true)
+      self.booked = true
     else
-      self.update(booked: false)
+      self.booked = false
     end
   end
 
