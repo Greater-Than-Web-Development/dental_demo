@@ -8,16 +8,18 @@ class TimeSlot < ActiveRecord::Base
   belongs_to :work_day
 
   # Before saving to database, make sure to update booked attribute
-  before_save :update_booked
+  # before_save :update_booked
 
-  # DEBUG: error in update_booked
-  def update_booked
-    if self.booked?
-      self.booked = true
-    else
-      self.booked = false
-    end
-  end
+  # WIP: DEBUG: error in update_booked, can't update database to make it booked
+  # def update_booked
+  #   if self.booked?
+  #     self.booked = true
+  #     self.save!
+  #   else
+  #     self.booked = false
+  #     self.save!
+  #   end
+  # end
 
   # Major or minor appointments can be booked concurrently with a max of 2 appointments.
   def booked?
