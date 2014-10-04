@@ -21,7 +21,7 @@ class TimeSlot < ActiveRecord::Base
   # Major or minor appointments can be booked concurrently with a max of 2 appointments.
   def booked?
     if self.appointments.count == 0
-      return false # It is not booked booked.
+      return false # It is not booked.
     elsif self.appointments.count == 2
       return true # It is booked.
     elsif self.appointments.count == 1 and !self.appointments.last.closed?

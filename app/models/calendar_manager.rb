@@ -105,9 +105,9 @@ class CalendarManager
   end
 
   #ToDo make method more flexible
-  def generate_time_slots!(increment=15)
+  def generate_time_slots!(length_in_minutes=15)
     # Space between start and end
-    @slot_length ||= increment
+    @slot_length ||= length_in_minutes
 
     day = self.workday.date
     hour = 9
