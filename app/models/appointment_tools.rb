@@ -5,7 +5,7 @@ module AppointmentTools
     TimeOfDay.parse(time).strftime('%I:%M %p')
   end
 
-  def self.tod_format(time)
+  def tod_format(time)
     if TimeOfDay.parsable?(time)
       return TimeOfDay.parse(time)
     else
@@ -21,7 +21,7 @@ module AppointmentTools
     if object1.nil? or object2.nil?
       false
     else
-      AppointmentTools.tod_format(object1.end_time) + increment.minutes == tod_format(object2.start_time)
+      tod_format(object1.end_time) + increment.minutes == tod_format(object2.start_time)
     end
   end
 

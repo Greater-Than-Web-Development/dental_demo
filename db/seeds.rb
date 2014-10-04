@@ -105,7 +105,7 @@ workday_number = 1
 
 workdays.each do |workday|
   calendar_manager = CalendarManager.new(workday: workday, date: workday.date)
-  puts "Seeding time slots for workday no. #{workday_number}"
+  puts "Seeding time slots for workday number #{workday_number}"
   workday_number += 1
   calendar_manager.generate_time_slots!
 end
