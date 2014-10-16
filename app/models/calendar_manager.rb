@@ -19,11 +19,18 @@ class CalendarManager
     false
   end
 
+  def time_slots
+    self.workday.time_slots
+  end
+
+  def major_time_slots
+    self.time_slots.select{|t| t.allow_major?}
+  end
+
   # Check all available majors
 
   def print_time_slots_for_major_bookings
-    time_slots = self.workday.time_slots
-    major_times = time_slots.select{|t| t.allow_major?}
+    major_times = self.major_time_slots
 
     available_times = Array.new
     major_times.each_with_index do |t, index|
@@ -113,13 +120,16 @@ class CalendarManager
     hour = 9
     minute = 0
     @time_slots = Array.new
-
-    33.times do
-      beginning = TimeOfDay.parse(hour) + minute.minutes
-      ending = beginning + @slot_length.minutes
-      time_slot = TimeSlot.create work_day_id: self.workday.id, start_time: beginning.strftime("%I:%M %p"), end_time: ending.strftime("%I:%M %p"), date: day
-      @time_slots << time_slot
-      minute += @slot_length
+    if self.workday.any?
+      puts "Workday already has time_slots associated."
+    else
+      33.times do
+        beginning = TimeOfDay.parse(hour) + minute.minutes
+        ending = beginning + @slot_length.minutes
+        time_slot = TimeSlot.create work_day_id: self.workday.id, start_time: beginning.strftime("%I:%M %p"), end_time: ending.strftime("%I:%M %p"), date: day
+        @time_slots << time_slot
+        minute += @slot_length
+      end
     end
   end
 
