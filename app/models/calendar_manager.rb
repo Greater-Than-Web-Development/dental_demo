@@ -45,8 +45,8 @@ class CalendarManager
       if CalendarManager.adjacent?(slot1, slot2) and CalendarManager.adjacent?(slot2, slot3) and CalendarManager.adjacent?(slot3, slot4)
         available_times << slot1
       end
-      return available_times
     end
+    return available_times
 
     # major_times.select{ |at| CalendarManager.adjacent?(at, TimeSlot.find(at.id)) }
 
