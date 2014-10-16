@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :booking do
     time_slot_id 1
+    chair_id 1
     appointment_id 1
   end
 end
