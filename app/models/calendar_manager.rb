@@ -27,7 +27,12 @@ class CalendarManager
     self.time_slots.select{|t| t.allow_major?}
   end
 
-  # Check all available majors
+  def minor_time_slots
+    self.time_slots.select{|t| t.booked?}
+  end
+
+  # Print time_slots that will allow a major booking (4 consecutive slots)
+  # with 0 or 1 minor appointments
 
   def print_time_slots_for_major_bookings
     major_times = self.major_time_slots
@@ -41,16 +46,22 @@ class CalendarManager
       slot3 = major_times[index + 2]
       slot4 = major_times[index + 3]
 
-
       if CalendarManager.adjacent?(slot1, slot2) and CalendarManager.adjacent?(slot2, slot3) and CalendarManager.adjacent?(slot3, slot4)
         available_times << slot1
       end
     end
     return available_times
+  end
 
-    # major_times.select{ |at| CalendarManager.adjacent?(at, TimeSlot.find(at.id)) }
-
-    # time_slots.where( "start_time > :start_point AND end_time < :end_point", {start_point: start, end_point: ending} )
+  def print_time_slots_for_minor_bookings
+    minor_times = self.minor_time_slots
+    available_times = Array.new
+    minor_times.each_with_index do |t, index|
+      slot1 = t
+      break if t == minor_times.last
+    # Minor bookings must be 2 slots long
+      slot2 = minor_times[index + 1]
+    end
   end
 
   # def print_time_slots_for_minor_bookings

@@ -49,7 +49,7 @@ class TimeSlot < ActiveRecord::Base
 
   #     --------- Conditions for TimeSlot to Accept Major Bookings ---------
   # When a time_slot has 0 appointments
-  # When a time_slot has 1 appointment and that appointment is a minor appointment
+  # When a time_slot has 1 appointment and that appointment is a minor appointment (can't be 2 major)
   # it allows a major booking
 
   def allow_major?
