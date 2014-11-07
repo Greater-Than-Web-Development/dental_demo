@@ -45,8 +45,9 @@ class CalendarManager
       slot2 = major_times[index + 1]
       slot3 = major_times[index + 2]
       slot4 = major_times[index + 3]
+      slot5 = major_times[index + 4]
 
-      if CalendarManager.adjacent?(slot1, slot2) and CalendarManager.adjacent?(slot2, slot3) and CalendarManager.adjacent?(slot3, slot4)
+      if CalendarManager.adjacent?(slot1, slot2) and CalendarManager.adjacent?(slot2, slot3) and CalendarManager.adjacent?(slot3, slot4) and CalendarManager.adjacent?(slot4, slot5)
         available_times << slot1
       end
     end
@@ -56,13 +57,22 @@ class CalendarManager
   def print_time_slots_for_minor_bookings
     minor_times = self.minor_time_slots
     available_times = Array.new
+
     minor_times.each_with_index do |t, index|
       slot1 = t
       break if t == minor_times.last
-    # Minor bookings must be 2 slots long
+
+      # Minor bookings must be 2 slots long
       slot2 = minor_times[index + 1]
+      slot3 = minor_times[index + 2]
+
+      if CalendarManager.adjacent?(slot1, slot2) and CalendarManager.adjacent?(slot2, slot3)
+        available_times << slot1
+      end
     end
+    return available_times
   end
+
 
   # def print_time_slots_for_minor_bookings
 
