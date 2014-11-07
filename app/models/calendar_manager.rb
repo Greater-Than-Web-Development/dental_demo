@@ -28,7 +28,7 @@ class CalendarManager
   end
 
   def minor_time_slots
-    self.time_slots.select{|t| t.booked?}
+    self.time_slots.select{|t| !t.booked?}
   end
 
   # Print time_slots that will allow a major booking (4 consecutive slots)

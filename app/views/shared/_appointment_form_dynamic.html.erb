@@ -23,7 +23,9 @@
     <%= f.input :date, input_html: {"data-behaviour" => "datepicker", class: "input-md"}, required: true, label: "Preferred Date of Appointment." %>
 
     <%= label_tag 'time', 'Appointment Time', class: 'control-label' %>
-
+<!--
+     User's first choice for an available appointment time -->
+    <!-- Here, add all available appointments given the appointment type -->
     <%= select_tag :first_time,
     options_from_collection_for_select(Appointment.all, :start_time, :start_time),
     multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your First Choice"%>
