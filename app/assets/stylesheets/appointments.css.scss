@@ -1,0 +1,92 @@
+// Place all the styles related to the Appointments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#appointment-form{
+float: none;
+margin: 0 auto;
+}
+
+.returning-patient{
+text-align: center;
+margin-bottom: 20px;
+}
+
+.form-horizontal{
+font-size: 16px;
+}
+
+#appointment-form .form-horizontal .controls input{
+margin-top: 5px;
+margin-bottom: 5px
+}
+
+h3.errors{
+color: red;
+font-weight: bold;
+}
+
+.col-lg-6#errors{
+float: none;
+margin: 0 auto;
+}
+
+#appointment-form .collection_check_boxes{
+margin-right: 10px;
+margin-left: 10px;
+margin-bottom: 20px;
+margin-top: 5px;
+}
+
+.appointment-label{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+.appointment-label#appointment-scheduling{
+  margin-top: 30px;
+}
+
+.appointment-well{
+  width: 120%;
+}
+
+.chosen-dropdown{
+  width: 391px;
+}
+
+#appointment-form label.error{
+color: red;
+font-size: 100%;
+padding: 5px;
+border-radius: 5px;
+float: none;
+text-align: center;
+width: 98%;
+position: relative;
+}
+
+#appointment-form label.error:before {
+    font-family: "FontAwesome";
+    top: 5px;
+    left: -14px;
+    content: "\f071";
+    margin-right: 1%;
+}
+
+#appointment-form .date label.error:before {
+    position: absolute;
+    font-family: "FontAwesome";
+    top: 5px;
+    left: -14px;
+    content: "\f071";
+}
+
+#appointment-form .date label.error{
+float: left;
+text-align: left;
+position: relative;
+margin-left: 4%;
+}
+
