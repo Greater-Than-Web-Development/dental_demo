@@ -1,0 +1,57 @@
+ <div class="col-lg-4" id="appointment-form">
+
+
+  <div class="well appointment-well">
+    <h4 class="appointment-label">Patient Information</h4>
+
+    <%= simple_form_for :appointment, {html: {class: "form-horizontal"}}  do |f| %>
+
+    <%= label_tag 'time', 'First Name', class: 'control-label' %>
+
+    <%= f.input :first_name, label: "", placeholder: current_patient.first_name, class: "form-control" %>
+
+    <%= f.input :last_name, label: "Last Name", placeholder: current_patient.last_name, class: "form-control" %>
+
+    <%= f.input :email, label: "Email Address", required: true, placeholder: current_patient.email, class: "form-control" %>
+
+    <%= f.input :phone, label: "Contact Phone Number", required: true, placeholder: current_patient.phone, class: "form-control" %>
+
+    <%= f.input :birthday, input_html: {"data-behaviour" => "datepicker"}, start_year: Date.today.year - 18, end_year: Date.today.year - 90, order: [:month, :day, :year], required: true, placeholder: current_patient.birthday, hint: "Please verify patient's date of birth. If you are patient's parent or legal guardian, or scheduling appointment on behalf of someone else please call 860-379-4382", class: "form-control" %>
+
+    <h4 class="appointment-label" id="appointment-scheduling">Appointment Scheduling</h4>
+
+    <%= f.input :date, input_html: {"data-behaviour" => "datepicker", class: "input-md"}, required: true, label: "Preferred Date of Appointment." %>
+
+    <%= label_tag 'time', 'Appointment Time', class: 'control-label' %>
+
+    <%= select_tag :first_time,
+    options_from_collection_for_select(Appointment.all, :start_time, :start_time),
+    multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your First Choice"%>
+
+    <%= label_tag 'time', 'Appointment Time (Your Second Choice)', class: 'control-label' %>
+
+    <%= select_tag :second_time,
+    options_from_collection_for_select(Appointment.all, :start_time.to_s, :start_time),
+    multiple: false, class: "chosen-dropdown", "data-placeholder" => "Your Second Choice" %>
+
+
+    <%= f.input :details, label: "Appointment Details", as: :text, input_html: {rows: "10", cols:"42"}, required: false %>
+
+    <%= f.button :submit, "Request Appointment", class: "btn btn-primary btn-lg" %>
+
+    <% end %>
+
+</div>
+</div>
+
+<!-- Chosen JS -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $(".chosen-dropdown").chosen({
+    max_selected_options: 5,
+    no_results_text: "Oops, nothing found!"
+})
+});
+
+</script>

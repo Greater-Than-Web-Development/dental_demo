@@ -1,0 +1,9 @@
+ <!--   TODO: Add Chosen Multiple for Time Drop Down -->
+
+    <%= label_tag 'time', 'Appointment Time', class: 'control-label' %>
+
+    <%= select_tag :time,
+       options_from_collection_for_select(Appointment.all, :start_time.to_s, :start_time),
+       multiple: true, class: "chosen-dropdown multiselect", "data-placeholder" => "Choose Time of Day" %>
+
+<!--   end -->
